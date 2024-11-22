@@ -30,7 +30,7 @@ const VideoPlay = () => {
           <div className={styles.controlProgress}>
             <span className={styles.startTime}>0:23</span>
             <div className={styles.progress}>
-              <span></span>
+              <span className={styles.currentTime}></span>
               <span></span>
             </div>
             <span className={styles.endTime}>3:23</span>
