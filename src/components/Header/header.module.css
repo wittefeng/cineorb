@@ -1,0 +1,44 @@
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  height: 96px;
+  z-index: 1;
+  position: relative;
+}
+
+.header {
+  width: 998px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoWrap {
+  display: flex;
+}
+
+.logoRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.shop {
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.singIn {
+  background-color: #FFA500;
+  width: 100px;
+  height: 42px;
+  border-radius: 4px;
+  border: 1px solid #979797;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}

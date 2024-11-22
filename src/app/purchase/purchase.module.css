@@ -1,0 +1,93 @@
+.wrap {
+  display: flex;
+  margin-top: 60px;
+  justify-content: center;
+}
+
+.content {
+  background-image: url('/purchase-line.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 1166px auto;
+  color: white;
+  width: 1166px;
+  height: 1286px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.content>h4 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-top: 113px;
+}
+
+.planList {
+  display: flex;
+  margin-top: 183px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.planList>div {
+  width: 33.33%;
+  padding: 0 14px;
+}
+
+.title {
+  font-size: 24px;
+  height: 58px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.clause {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-top: 56px;
+}
+
+.clause>p {
+  padding: 16px 14px;
+}
+
+.clause>p:hover {
+  padding: 16px 14px;
+  background-image: url('/plan-hover.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 367px auto;
+}
+
+.ContinueBtn {
+  position: absolute;
+  bottom: 54px;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
