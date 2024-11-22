@@ -1,11 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './signin.module.css'
-import Image from 'next/image'
 
 const SignIn = () => {
-  const [blockC, setBlockC] = useState()
   return (
     <div className={styles.wrap}>
       <h1 className={styles.title}>Sign In</h1>

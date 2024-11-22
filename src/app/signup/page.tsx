@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './signup.module.css'
 import Image from 'next/image'
 
 const SignIn = () => {
-  const [blockC, setBlockC] = useState()
   return (
     <div className={styles.wrap}>
       <h1 className={styles.title}>Join Cineorb</h1>

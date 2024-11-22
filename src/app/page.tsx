@@ -23,8 +23,14 @@ export default function Home() {
         'CINEORB works by partnering with film festivals worldwide to curate a selection of microfilms, while also offering a platform for independent filmmakers to showcase their original works. The platform is designed to make microfilms accessible to global audiences.'
     }
   ]
-  const FAQItem = React.memo(
-    ({ index, question, answer, isActive, toggleAnswer }: any) => (
+  const FAQItem = React.memo(function FAQItem({
+    index,
+    question,
+    answer,
+    isActive,
+    toggleAnswer
+  }: any) {
+    return (
       <div
         className={`${styles.faqItem} ${isActive ? styles.open : ''}`}
         key={index}
@@ -46,7 +52,7 @@ export default function Home() {
         <p className={isActive ? styles.showAnswer : ''}>{answer}</p>
       </div>
     )
-  )
+  })
   return (
     <div className={styles.page}>
       <div className={styles.bgWrap}>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './payplan.module.css'
 import Link from 'next/link'
 

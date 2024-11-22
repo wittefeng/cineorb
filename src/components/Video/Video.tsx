@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './video.module.css'
@@ -8,7 +8,6 @@ interface IProps {
 const Video = (props: IProps) => {
   const { width = 360 } = props
   console.log('width', width)
-  const [height, setHeight] = useState()
   return (
     <Link
       href={'/video'}
