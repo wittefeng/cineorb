@@ -42,3 +42,25 @@
   align-items: center;
   font-size: 16px;
 }
+
+.headWrap {
+  display: flex;
+  align-items: center;
+}
+
+.headIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nickName {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-left: 10px;
+}

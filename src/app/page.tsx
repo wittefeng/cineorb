@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null) // 用来跟踪当前展开的 FAQ 项目
@@ -55,31 +56,130 @@ export default function Home() {
   })
   return (
     <div className={styles.page}>
-      <div className={styles.bgWrap}>
-        {/* <Image
-          src="/background-1.jpg"
-          alt="logo Logo"
-          width={1920}
-          height={980}
-        />
-        <Image
-          src="/background-2.jpg"
-          alt="logo Logo"
-          width={1920}
-          height={1466}
-        />
-        <Image
-          src="/background-3.png"
-          alt="logo Logo"
-          width={1920}
-          height={960}
-        /> */}
-      </div>
       <Image src="/home-1.png" alt="logo Logo" width={844} height={283} />
-      <Image src="/home-2.png" alt="logo Logo" width={1235} height={274} />
-      <div className={styles.signUp}>Sign Up</div>
-      <div className={styles.home2}>
+      <div className={styles.headText}>
+        <div className={styles.title}>Where Every Story Comes Alive! </div>
+        <div className={styles.subTitle}>
+          <div>
+            Looking to <span>explore</span> a wide selection of curated{' '}
+            <span>short films</span> and series?
+          </div>
+          <div>
+            Or ready to showcase <span>your own creations</span>?{' '}
+          </div>
+          <div>
+            Sign up for a Cineorb account today—<span>start free</span> or
+            choose a plan that fits your needs and kick off your creative
+            journey
+          </div>
+        </div>
+      </div>
+      <Link href="/signup" className={styles.signUp}>
+        Sign Up
+      </Link>
+      {/* <div className={styles.home2}>
         <Image src="/home-3.png" alt="logo Logo" width={1200} height={577} />
+      </div> */}
+      <div className={styles.home2}>
+        <div className={styles.home2Wrap}>
+          <div>
+            <div className={styles.title2}>TRENDING FILM</div>
+            <div className={styles.leftImages}>
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+            </div>
+          </div>
+          <div className={styles.arrowWrap}>
+            <Image
+              className={styles.leftArrow}
+              src={'/left-arrow.png'}
+              alt={''}
+              width={40}
+              height={40}
+            />
+            <Image src={'/left-arrow.png'} alt={''} width={40} height={40} />
+          </div>
+          <div>
+            <div className={styles.title2}>TRENDING FILM FESTIVALS</div>
+            <div className={styles.rightImages}>
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+              <img
+                className={styles.headIcon}
+                src={
+                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                }
+                alt={''}
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <Image src="/home-4-logo.png" alt="logo Logo" width={60} height={68} />
       <div className={styles.home4Title}>What Makes Cineorb Unique</div>

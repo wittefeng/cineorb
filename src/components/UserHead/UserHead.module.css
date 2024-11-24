@@ -1,0 +1,28 @@
+.headTitle {
+  background-image: url('/oval.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 1070px 150px;
+  height: 144px;
+  width: 100%;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-top: 60px;
+}
+
+.headTitleLine {
+  width: 100%;
+  border-radius: 2px;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.01);
+  border: 6px solid;
+  height: 20px;
+  border-image: linear-gradient(180deg, #FFA500 0%, #BB3D90 100%) 6;
+}

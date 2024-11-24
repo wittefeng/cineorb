@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headWrap {
+  background: rgba(159, 103, 7, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+.head {
+  width: 1160px;
+}
+
+.headInfo {
+  display: flex;
+}
+
+.headIcon {
+  width: 290px;
+  height: 163px;
+  object-fit: contain;
+  background-color: black;
+}
+
+.filmNameAndPrice {
+  padding: 24px 0 0 40px;
+}
+
+.filmName {
+  font-family: 思源黑体;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.filmPrice {
+  border-radius: 8px;
+  opacity: 1;
+  background: #FDA80A;
+  margin-top: 18px;
+  width: 160px;
+  height: 52px;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.82px;
+  color: #000000;
+}
+
+.infoMessage {
+  font-size: 16px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-top: 18px;
+}
+
+.videoList {
+  margin-top: 40px;
+  color: #FFFFFF;
+  width: 1200px;
+  padding-bottom: 120px;
+}
+
+.videoItemItem {
+  margin-top: 20px;
+  display: flex;
+}
+
+.videoItemRight {
+  margin-left: 18px;
+}
+
+.videoItemName {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  line-height: 52px;
+}
+
+.videoItemTime {
+  font-family: 思源黑体;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.videoItemMessage {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-top: 13px;
+}

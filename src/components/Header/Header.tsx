@@ -30,6 +30,16 @@ const Header = () => {
         <Link href="/signin" className={styles.singIn}>
           Sign In
         </Link>
+        <Link href="/user" className={styles.headWrap}>
+          <img
+            className={styles.headIcon}
+            src={
+              'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+            }
+            alt={''}
+          />
+          <span className={styles.nickName}>Nickname</span>
+        </Link>
       </div>
     </header>
   )

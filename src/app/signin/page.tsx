@@ -2,6 +2,7 @@
 
 import React from 'react'
 import styles from './signin.module.css'
+import Link from 'next/link'
 
 const SignIn = () => {
   return (
@@ -15,7 +16,9 @@ const SignIn = () => {
       </div>
 
       <div className={styles.dealWrap}>Forgot password?</div>
-      <div className={styles.continueBtn}>CONTINUE</div>
+      <Link className={styles.continueBtn} href={'/home'}>
+        CONTINUE
+      </Link>
       <p className={styles.otherTips}>
         Having trouble signing in or need assistance? Please contact us at
         <a href="">contact@cineorb.com</a>

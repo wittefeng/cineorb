@@ -7,6 +7,7 @@
   /* Borders with gradient fills are currently not supported when copying CSS */
   border-radius: 8px;
   position: relative;
+  flex-shrink: 0;
 }
 
 .imgWrap {
@@ -19,4 +20,5 @@
 
 .playIcon {
   z-index: 1;
+  position: absolute;
 }

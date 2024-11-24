@@ -1,24 +1,41 @@
 .page {
-  /* background-image: url('/background-1.jpg');
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: 1920px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.bgWrap {
-  position: absolute;
-  z-index: 0;
+
+.headText {
+  color: white;
+  text-align: center;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 78px;
+  letter-spacing: 0px;
+}
+
+.subTitle {
+  color: rgba(255, 255, 255, .6);
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 42px;
+  letter-spacing: 0px;
+  text-shadow: 0px 0px 30px rgba(13, 37, 62, 0.7);
+}
+
+.subTitle span {
+  color: #FDA80A;
+  font-weight: 900;
+  font-size: 21px;
 }
 
 .signUp {
+  margin-top: 80px;
   width: 160px;
   height: 52px;
   border-radius: 8px;
@@ -46,6 +63,102 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.home2Wrap {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title2 {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.arrowWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 200px;
+}
+
+.leftArrow {
+  transform: rotate(180deg);
+}
+
+.leftImages>img {
+  width: 164px;
+  height: 210px;
+  border-radius: 80px;
+}
+
+.leftImages>img:nth-child(1) {
+  margin-top: 60px;
+}
+
+.leftImages>img:nth-child(2) {
+  margin-top: 30px;
+}
+
+.leftImages>img:nth-child(5) {
+  margin-top: -30px;
+}
+
+.leftImages>img:nth-child(6) {
+  margin-top: -60px;
+}
+
+.rightImages>img {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.rightImages>img:nth-child(1) {
+  left: 0;
+  top: 30px;
+}
+
+.rightImages>img:nth-child(2) {
+  right: 10px;
+  top: 0;
+}
+
+.rightImages>img:nth-child(3) {
+  left: 170px;
+  top: 160px;
+}
+
+.rightImages>img:nth-child(4) {
+  bottom: 0;
+  left: 30px;
+}
+
+.rightImages>img:nth-child(5) {
+  bottom: 0;
+  right: 0;
+}
+
+.leftImages {
+  position: relative;
+  height: 490px;
+  width: 512px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.rightImages {
+  position: relative;
+  height: 490px;
+  width: 512px;
 }
 
 .home4Title {

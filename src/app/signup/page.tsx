@@ -3,6 +3,7 @@
 import React from 'react'
 import styles from './signup.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const SignIn = () => {
   return (
@@ -32,7 +33,9 @@ const SignIn = () => {
           Didn't receive the code? Resend in 60 seconds.
         </div>
       </div>
-      <div className={styles.continueBtn}>CONTINUE</div>
+      <Link className={styles.continueBtn} href={'/purchase'}>
+        CONTINUE
+      </Link>
       <p className={styles.otherTips}>
         Having trouble signing up or need assistance? Please contact us at
         <a>contact@cineorb.com.</a>

@@ -1,0 +1,57 @@
+.customSelect {
+  position: relative;
+  width: 516px;
+  margin-top: 16px;
+  color: #FFA500;
+}
+
+.customSelectHeader {
+  background-color: #9F6707;
+  border: 1px solid #FFA500;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 8px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #FFA500;
+  background-color: transparent;
+  height: 68px;
+  padding: 0 8px;
+}
+
+.customSelectOptions {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 262px;
+  background-color: #9F6707;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  color: white;
+  padding: 16px 0;
+}
+
+.customSelectOption {
+  padding: 16px;
+  cursor: pointer;
+}
+
+.customSelectOption:hover {
+  background-color: #ec9808;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  margin-right: 26px;
+}
+
+.arrow.up {
+  transform: rotate(90deg);
+}
+
+.arrow.down {
+  transform: rotate(0deg);
+}
