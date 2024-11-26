@@ -8,7 +8,7 @@ import VideoManagement from './VideoManagement'
 import Benefits from './Benefits'
 import VideoAnalytics from './VideoAnalytics'
 import DIYM from './DIYM'
-export default function () {
+const Page = () => {
   // 定义当前选中的 tab，初始值是 1
   const [activeTab, setActiveTab] = useState<number>(4)
 
@@ -128,3 +128,4 @@ export default function () {
     </div>
   )
 }
+export default Page

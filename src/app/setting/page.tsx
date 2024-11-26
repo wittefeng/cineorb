@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
 import UserHead from '@/components/UserHead/UserHead'
-export default function () {
+const Setting = () => {
   // 定义当前选中的 tab，初始值是 1
   const [activeTab, setActiveTab] = useState<number>(0)
 
@@ -174,3 +174,5 @@ export default function () {
     </div>
   )
 }
+
+export default Setting
