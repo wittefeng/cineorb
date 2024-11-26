@@ -1,7 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import styles from './page.module.css'
 import CustomSelect from '@/components/CustomSelect/CustomSelect'
 const Contact = () => {
