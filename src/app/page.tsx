@@ -56,7 +56,13 @@ export default function Home() {
   })
   return (
     <div className={styles.page}>
-      <Image src="/home-1.png" alt="logo Logo" width={844} height={283} />
+      <Image
+        className={styles.logo}
+        src="/home-1.png"
+        alt="logo Logo"
+        width={844}
+        height={283}
+      />
       <div className={styles.headText}>
         <div className={styles.title}>Where Every Story Comes Alive! </div>
         <div className={styles.subTitle}>

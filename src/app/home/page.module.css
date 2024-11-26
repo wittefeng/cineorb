@@ -100,3 +100,23 @@
   width: 1158px;
   margin-top: 30px;
 }
+
+@media (max-width: 767px) {
+  .ts {
+    flex-direction: column;
+    margin-top: 0px;
+  }
+
+  .ts>div {
+    margin-top: 30px;
+  }
+
+  .listWrap,
+  .listSwiperWrap {
+    width: 95%;
+  }
+
+  .listTop {
+    flex-wrap: wrap;
+  }
+}

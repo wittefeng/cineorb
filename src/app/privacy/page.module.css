@@ -34,3 +34,11 @@
   margin-top: 24px;
 
 }
+
+@media (max-width: 767px) {
+
+  .message {
+    width: 95%;
+  }
+
+}

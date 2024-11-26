@@ -64,3 +64,44 @@
   color: #FFFFFF;
   margin-left: 10px;
 }
+
+@media (max-width: 767px) {
+  .header {
+    width: 95%;
+  }
+
+  .headerContainer {
+    height: 60px;
+  }
+
+  .logoWrap>img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logoRight img {
+    width: 76px;
+    height: 18px;
+  }
+
+  .shop {
+    font-size: 14px;
+  }
+
+  .singIn {
+
+    width: 75px;
+    height: 31px;
+    font-size: 14px;
+  }
+
+  .headIcon {
+
+    width: 30px;
+    height: 30px;
+  }
+
+  .nickName {
+    font-size: 14px;
+  }
+}

@@ -55,3 +55,10 @@
 .arrow.down {
   transform: rotate(0deg);
 }
+
+@media (max-width: 767px) {
+
+  .customSelect {
+    width: 90%;
+  }
+}

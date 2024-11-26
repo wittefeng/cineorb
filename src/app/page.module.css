@@ -22,8 +22,8 @@
 .subTitle {
   color: rgba(255, 255, 255, .6);
   font-size: 21px;
-  font-weight: 900;
   line-height: 42px;
+  font-weight: 900;
   letter-spacing: 0px;
   text-shadow: 0px 0px 30px rgba(13, 37, 62, 0.7);
 }
@@ -256,7 +256,6 @@
   line-height: normal;
   position: relative;
   width: 648px;
-  padding: 0 0 20px 0;
 }
 
 .faqItem>p {
@@ -286,4 +285,79 @@
   top: 50%;
   right: 0;
   margin-top: -11px;
+}
+
+
+@media (max-width: 767px) {
+  .logo {
+    width: 80%;
+    height: auto;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 58px;
+  }
+
+  .headText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .subTitle {
+    font-size: 16px;
+    line-height: 30px;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .subTitle span {
+    font-size: 16px;
+    line-height: 30px;
+  }
+
+  .signUp {
+    font-size: 16px;
+    margin-top: 60px;
+    width: 120px;
+    height: 40px;
+  }
+
+  .home2 {
+    height: auto;
+    background: #F19F3D;
+    padding: 30px 0;
+    margin-top: 20px;
+  }
+
+  .home2Wrap {
+    flex-direction: column;
+  }
+
+  .home5Wrap {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .home5Item {
+    padding: 10px;
+    border-radius: 50px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .faqItem,
+  .faqItem h2 {
+    width: 100%;
+  }
+
+  .faqItem p {
+    width: 90%;
+  }
+
+  .faqArrow {
+    right: 40px;
+  }
 }

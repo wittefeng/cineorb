@@ -131,3 +131,17 @@
 
   font-weight: 350;
 }
+
+@media (max-width: 767px) {
+
+  .formWrap,
+  .inputWrap,
+  .textareaWrap,
+  .bottomMessage {
+    width: 90%;
+  }
+
+  .formBtn {
+    width: 200px;
+  }
+}

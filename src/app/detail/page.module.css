@@ -117,3 +117,12 @@
   color: #FFFFFF;
   margin-top: 13px;
 }
+
+@media (max-width: 767px) {
+
+  .head,
+  .videoList {
+    width: 90%;
+  }
+
+}
