@@ -6,6 +6,10 @@ import styles from './page.module.css'
 import Link from 'next/link'
 
 export default function Home() {
+  const imagesArray = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
+    // 这里添加更多图片路径
+  ]
   const [activeIndex, setActiveIndex] = useState<number | null>(null) // 用来跟踪当前展开的 FAQ 项目
 
   const toggleAnswer = (index: number) => {
@@ -24,6 +28,36 @@ export default function Home() {
         'CINEORB works by partnering with film festivals worldwide to curate a selection of microfilms, while also offering a platform for independent filmmakers to showcase their original works. The platform is designed to make microfilms accessible to global audiences.'
     }
   ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const imagesPerPage = 11
+
+  // 向前切换图片的函数
+  const handlePrevClick = () => {
+    setCurrentIndex((prevIndex) => {
+      let newIndex = prevIndex - imagesPerPage
+      if (newIndex < 0) {
+        newIndex = Math.max(0, imagesArray.length - imagesPerPage)
+      }
+      return newIndex
+    })
+  }
+
+  // 向后切换图片的函数
+  const handleNextClick = () => {
+    setCurrentIndex((prevIndex) => {
+      let newIndex = prevIndex + imagesPerPage
+      if (newIndex >= imagesArray.length) {
+        newIndex = 0
+      }
+      return newIndex
+    })
+  }
+
+  // 获取当前要显示的图片列表
+  const currentImages = imagesArray.slice(
+    currentIndex,
+    currentIndex + imagesPerPage
+  )
   const FAQItem = React.memo(function FAQItem({
     index,
     question,
@@ -91,48 +125,16 @@ export default function Home() {
           <div>
             <div className={styles.title2}>TRENDING FILM</div>
             <div className={styles.leftImages}>
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
+              {currentImages.slice(0, 6).map((image, index) => (
+                <img
+                  key={index}
+                  className={styles.headIcon}
+                  src={
+                    'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                  }
+                  alt={`${image}`}
+                />
+              ))}
             </div>
           </div>
           <div className={styles.arrowWrap}>
@@ -142,47 +144,29 @@ export default function Home() {
               alt={''}
               width={40}
               height={40}
+              onClick={handlePrevClick}
             />
-            <Image src={'/left-arrow.png'} alt={''} width={40} height={40} />
+            <Image
+              src={'/left-arrow.png'}
+              alt={''}
+              width={40}
+              height={40}
+              onClick={handleNextClick}
+            />
           </div>
           <div>
             <div className={styles.title2}>TRENDING FILM FESTIVALS</div>
             <div className={styles.rightImages}>
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
-              <img
-                className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
-                alt={''}
-              />
+              {currentImages.slice(6, 11).map((image, index) => (
+                <img
+                  key={index}
+                  className={styles.headIcon}
+                  src={
+                    'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                  }
+                  alt={`${image}`}
+                />
+              ))}
             </div>
           </div>
         </div>

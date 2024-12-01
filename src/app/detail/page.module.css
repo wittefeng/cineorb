@@ -125,4 +125,11 @@
     width: 90%;
   }
 
+  .videoItemItem {
+    flex-direction: column;
+  }
+
+  .videoItemRight {
+    margin-left: 0;
+  }
 }

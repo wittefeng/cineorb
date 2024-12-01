@@ -35,10 +35,12 @@
     text-decoration: underline;
     text-underline-offset: 4px;
   }
+
+
 }
 
-@media (max-width: 600px) {
-
-
-  .footer {}
+@media (max-width: 767px) {
+  .footer .as {
+    gap: 24px;
+  }
 }

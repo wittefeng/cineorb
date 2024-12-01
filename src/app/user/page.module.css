@@ -334,3 +334,19 @@
   justify-content: center;
   margin-top: 30px;
 }
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 100px;
+  }
+
+  .tab {
+    padding-left: 12px;
+    flex-direction: column;
+  }
+
+  .tabText {
+
+    padding-left: 12px;
+  }
+}

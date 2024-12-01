@@ -137,6 +137,7 @@
   .formWrap,
   .inputWrap,
   .textareaWrap,
+  .message,
   .bottomMessage {
     width: 90%;
   }

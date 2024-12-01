@@ -360,4 +360,41 @@
   .faqArrow {
     right: 40px;
   }
+
+  .home2Wrap {
+    width: 100%;
+    height: auto;
+
+  }
+
+  .title2 {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .leftImages {
+    width: 100%;
+    height: auto;
+  }
+
+  .rightImages {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+
+  .leftImages>img {
+    margin-top: 10px !important;
+  }
+
+  .rightImages>img {
+    top: 0 !important;
+    left: 0 !important;
+    position: relative !important;
+  }
+
 }
