@@ -12,8 +12,6 @@ import 'swiper/css/pagination'
 import usePageWidthListener from '@/hook/usePageWidthListener'
 export default function Home() {
   const pageWidth = usePageWidthListener()
-  console.log('pageWidth', pageWidth)
-  // 计算宽度为246的元素数量的函数，最少保留一个
   const calculateElementCount = (pageWidth: number): number => {
     const effectiveWidth = Math.min(pageWidth * 0.95, 1278)
     const count = Math.floor(effectiveWidth / 246)
