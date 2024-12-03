@@ -15,13 +15,16 @@ const Header = () => {
             priority
           />
           <div className={styles.logoRight}>
-            <Image
-              src="/wecom-temp.png"
-              alt="logo Logo"
-              width={102}
-              height={25}
-              priority
-            />
+            <Link href="/" className={styles.shop}>
+              <Image
+                src="/wecom-temp.png"
+                alt="logo Logo"
+                width={102}
+                height={25}
+                priority
+              />
+            </Link>
+
             <Link href="/" className={styles.shop}>
               Shop
             </Link>

@@ -13,7 +13,7 @@
 .first {
   display: flex;
   justify-content: center;
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .first>div {
@@ -29,7 +29,7 @@
 
 .ts {
   display: flex;
-  margin-top: 79px;
+  margin-top: 20px;
 }
 
 .ts>div {

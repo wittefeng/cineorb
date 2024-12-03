@@ -88,6 +88,10 @@
   width: 200px;
 }
 
+.arrowWrap>img {
+  cursor: pointer;
+}
+
 .leftArrow {
   transform: rotate(180deg);
 }

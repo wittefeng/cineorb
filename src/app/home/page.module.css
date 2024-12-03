@@ -13,7 +13,7 @@
 .first {
   display: flex;
   justify-content: center;
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .first>div {
@@ -29,7 +29,7 @@
 
 .ts {
   display: flex;
-  margin-top: 79px;
+  margin-top: 30px;
 }
 
 .ts>div {
@@ -38,14 +38,36 @@
 }
 
 .listWrap {
-  width: 1278px;
+  max-width: 1278px;
   margin-top: 90px;
+  width: 95%;
 }
 
-.listSwiperWrap {
-  width: 1158px;
-  margin-top: 90px;
+.customNavigation>div::after {
+  content: '';
+  background-image: url('/arrow-white.png');
+  background-size: 8px 16px;
+  width: 26px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
+.customNavigation>div {
+  width: 26px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+  opacity: 1;
+  background: #403E3E;
+  margin-top: -44px;
+}
+
+.customNavigation>div:first-of-type::after {
+  transform: rotate(180deg);
+}
+
 
 .title {
   display: flex;

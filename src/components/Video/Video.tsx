@@ -7,7 +7,6 @@ interface IProps {
 }
 const Video = (props: IProps) => {
   const { width = 360 } = props
-  console.log('width', width)
   return (
     <Link
       href={'/video'}
