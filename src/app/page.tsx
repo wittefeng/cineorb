@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
+import ModalComponent, {
+  ModalData
+} from '@/components/ModalComponent/ModalComponent'
 
 export default function Home() {
   const imagesArray = [
@@ -15,7 +18,21 @@ export default function Home() {
   const toggleAnswer = (index: number) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index)) // 切换当前展开的 FAQ 项目
   }
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [currentModalData, setCurrentModalData] = useState<ModalData | null>(
+    null
+  )
 
+  const openModal = (data: ModalData) => {
+    console.log('data', data)
+    setCurrentModalData(data)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setCurrentModalData(null)
+  }
   const faqData = [
     {
       question: 'What is Cineorb?',
@@ -127,6 +144,14 @@ export default function Home() {
             <div className={styles.leftImages}>
               {currentImages.slice(0, 6).map((image, index) => (
                 <img
+                  onClick={() =>
+                    openModal({
+                      title: '影片TRENDING' + index,
+                      description: `这是影片TRENDING${index}的精彩描述`,
+                      imageUrl:
+                        'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                    })
+                  }
                   key={index}
                   className={styles.headIcon}
                   src={
@@ -159,6 +184,14 @@ export default function Home() {
             <div className={styles.rightImages}>
               {currentImages.slice(6, 11).map((image, index) => (
                 <img
+                  onClick={() =>
+                    openModal({
+                      title: '影片' + index,
+                      description: `这是影片 TRENDING FILM FESTIVALS${index}的精彩描述`,
+                      imageUrl:
+                        'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                    })
+                  }
                   key={index}
                   className={styles.headIcon}
                   src={
@@ -171,6 +204,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* modal start */}
+      {isModalOpen && currentModalData && (
+        <ModalComponent
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          modalData={currentModalData}
+        />
+      )}
+      {/* modal end */}
       <Image src="/home-4-logo.png" alt="logo Logo" width={60} height={68} />
       <div className={styles.home4Title}>What Makes Cineorb Unique</div>
       <div className={styles.home5Wrap}>

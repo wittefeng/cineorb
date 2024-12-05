@@ -31,7 +31,7 @@
   height: 52px;
   border-radius: 8px;
   opacity: 1;
-  background: #FFA500;
+  background: #FFC864;
   font-size: 14px;
   font-weight: 900;
   line-height: normal;
@@ -44,11 +44,21 @@
   cursor: pointer;
 }
 
+.btnSelect {
+  background: #FFA500;
+}
+
 .btn:hover {
-  background: #FFC864;
+  background: #FFA500;
   border: 2px solid #FFFFFF;
 }
 
 .btnC {
   margin-top: 52px;
+  background: #FFA500;
+}
+
+.btnCDisabled {
+  background-color: #999;
+  cursor: not-allowed;
 }

@@ -8,14 +8,14 @@ const SignIn = () => {
     <div className={styles.wrap}>
       <h1 className={styles.title}>Enter your gift code</h1>
       <div className={styles.inputWrap}>
-        <input type="text" placeholder="Gift Card Pin or Code" />
+        <input type="text" placeholder="Enter Your Gift Card Number" />
       </div>
       <div className={styles.inputWrap}>
-        <input type="text" placeholder="Zip Code" />
+        <input type="text" placeholder="Enter Pin" />
       </div>
       <div className={styles.changeWrap}>
         <div className={styles.plan}>
-          <p className={styles.planName}>$6.99/month(pre-tax)</p>
+          <p className={styles.planName}></p>
           <p>Standard with ads</p>
         </div>
         <div className={styles.changeBtn}>Change</div>

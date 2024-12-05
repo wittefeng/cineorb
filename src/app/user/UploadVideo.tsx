@@ -151,6 +151,9 @@ const UploadVideo = () => {
           <span>Add person</span>
         </div>
       </div>
+      <div className={styles.benefitsBtnWrap}>
+        <div className={styles.benefitsBtn}>Submit</div>
+      </div>
     </div>
   )
 }

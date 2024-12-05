@@ -10,12 +10,14 @@
 .header {
   width: 998px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  position: relative;
 }
 
 .logoWrap {
   display: flex;
+  margin-right: auto;
 }
 
 .logoRight {
@@ -43,10 +45,6 @@
   font-size: 16px;
 }
 
-.headWrap {
-  display: flex;
-  align-items: center;
-}
 
 .headIcon {
   width: 40px;
@@ -63,6 +61,35 @@
   letter-spacing: 0px;
   color: #FFFFFF;
   margin-left: 10px;
+}
+
+.headWrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #FFA500;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdownItem:hover {
+  background-color: #f5f5f5;
 }
 
 @media (max-width: 767px) {

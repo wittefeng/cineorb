@@ -71,13 +71,6 @@
   padding: 16px 14px;
 }
 
-.clause>p:hover {
-  padding: 16px 14px;
-  background-image: url('/plan-hover.png');
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: 367px auto;
-}
 
 .ContinueBtn {
   position: absolute;

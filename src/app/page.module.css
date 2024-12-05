@@ -99,6 +99,7 @@
 .leftImages>img {
   width: 164px;
   height: 210px;
+  cursor: pointer;
   border-radius: 80px;
 }
 
@@ -123,6 +124,7 @@
   height: 190px;
   border-radius: 50%;
   position: absolute;
+  cursor: pointer;
 }
 
 .rightImages>img:nth-child(1) {

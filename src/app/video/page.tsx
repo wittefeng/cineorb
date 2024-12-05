@@ -2,16 +2,17 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
-const VideoPlay = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null) // 用来引用 video 元素
-  const progressRef = useRef<HTMLDivElement | null>(null) // 用来引用 video 拖拽 元素
-  const [currentTime, setCurrentTime] = useState<number>(0) // 当前播放时间
-  const [isPlaying, setIsPlaying] = useState<boolean>(false) // 控制播放/暂停状态
-  const [isDragging, setIsDragging] = useState<boolean>(false) // 是否正在拖拽进度条
-  const [progressWidth, setProgressWidth] = useState<number>(0) // 进度条的宽度
 
-  // 偏移量
+const VideoPlay = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const progressRef = useRef<HTMLDivElement | null>(null)
+  const [currentTime, setCurrentTime] = useState<number>(0)
+  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const [isDragging, setIsDragging] = useState<boolean>(false)
+  const [progressWidth, setProgressWidth] = useState<number>(0)
+
   const offset = 18
+
   // 处理播放/暂停按钮点击
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -27,14 +28,14 @@ const VideoPlay = () => {
   // 处理快进按钮点击
   const fastForward = () => {
     if (videoRef.current) {
-      videoRef.current.currentTime += 10 // 快进 10 秒
+      videoRef.current.currentTime += 10
     }
   }
 
   // 处理倒退按钮点击
   const rewind = () => {
     if (videoRef.current) {
-      videoRef.current.currentTime -= 10 // 倒退 10 秒
+      videoRef.current.currentTime -= 10
     }
   }
 
@@ -52,45 +53,63 @@ const VideoPlay = () => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
 
-  // 视频结束时设置播放状态
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.onended = () => {
         setIsPlaying(false)
       }
-      setProgressWidth(progressRef.current?.offsetWidth || 0) // 设置进度条宽度
+      setProgressWidth(progressRef.current?.offsetWidth || 0)
     }
   }, [])
 
-  // 拖拽进度条时
+  // 处理全屏播放按钮点击，切换全屏状态
+  const toggleFullscreen = () => {
+    if (videoRef.current && fullscreenRef.current) {
+      if (!isFullscreen) {
+        fullscreenRef.current.requestFullscreen().catch((error: any) => {
+          console.error('请求全屏时出错:', error)
+        })
+      } else {
+        document.exitFullscreen().catch((error) => {
+          console.error('退出全屏时出错:', error)
+        })
+      }
+      setIsFullscreen(!isFullscreen)
+    }
+  }
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement)
+    }
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange)
+    }
+  }, [])
+
   const handleDrag = useCallback(
     (event: MouseEvent) => {
       if (isDragging && videoRef.current && progressRef.current) {
-        const rect = progressRef.current.getBoundingClientRect() // 获取进度条容器的位置
-        let offsetX = event.clientX - rect.left - offset // 计算鼠标相对位置并减去偏移量
-
-        // 限制 offsetX 在进度条宽度范围内
+        const rect = progressRef.current.getBoundingClientRect()
+        let offsetX = event.clientX - rect.left - offset
         offsetX = Math.max(0, Math.min(offsetX, rect.width))
-
-        const newTime = (offsetX / rect.width) * videoRef.current.duration // 计算新的播放时间
-        videoRef.current.currentTime = newTime // 更新视频播放时间
-        setCurrentTime(newTime) // 更新当前时间
+        const newTime = (offsetX / rect.width) * videoRef.current.duration
+        videoRef.current.currentTime = newTime
+        setCurrentTime(newTime)
       }
     },
     [isDragging, progressWidth]
   )
 
-  // 当拖动开始时
   const handleMouseDown = () => {
     setIsDragging(true)
   }
 
-  // 当拖动结束时
   const handleMouseUp = () => {
     setIsDragging(false)
   }
 
-  // 在组件卸载时移除事件监听
   useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleDrag)
@@ -105,9 +124,13 @@ const VideoPlay = () => {
       document.removeEventListener('mouseup', handleMouseUp)
     }
   }, [isDragging, handleDrag])
+
+  const fullscreenRef = useRef<any>(null)
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
+
   return (
-    <div>
-      <h1>Video Title</h1>
+    <div ref={fullscreenRef}>
+      <h1 className={styles.videoTitle}>Video Title</h1>
 
       <div className={styles.videoWrap}>
         <video
@@ -116,8 +139,8 @@ const VideoPlay = () => {
           preload="auto"
           src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           ref={videoRef}
-          onTimeUpdate={handleTimeUpdate} // 监听时间更新
-          onEnded={() => setIsPlaying(false)} // 视频结束时，更新播放状态
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={() => setIsPlaying(false)}
         >
           您的浏览器不支持video标签。
         </video>
@@ -144,6 +167,14 @@ const VideoPlay = () => {
                 height={39}
               />
             </div>
+            <div onClick={toggleFullscreen}>
+              <Image
+                src={isFullscreen ? '/exit-fullscreen.png' : '/fullscreen.png'}
+                alt={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+                width={36}
+                height={36}
+              />
+            </div>
           </div>
 
           <div className={styles.controlProgress}>
@@ -164,7 +195,7 @@ const VideoPlay = () => {
                     (currentTime / (videoRef.current?.duration || 1)) * 100
                   }%`
                 }}
-                onMouseDown={handleMouseDown} // 鼠标按下时开始拖动
+                onMouseDown={handleMouseDown}
               ></span>
             </div>
             <span className={styles.endTime}>

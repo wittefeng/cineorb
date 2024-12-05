@@ -8,6 +8,7 @@
   background-position: top;
   background-repeat: no-repeat;
   background-size: 1920px auto;
+  padding-bottom: 30px;
 }
 
 .first {
@@ -76,19 +77,15 @@
 }
 
 .titleRight {
-  border-radius: 8px;
-  opacity: 1;
-  background: #FDA80A;
-  width: 160px;
-  height: 52px;
-  font-size: 18px;
-  font-weight: 900;
-  line-height: normal;
+  background-color: #FFA500;
+  width: 100px;
+  height: 42px;
+  border-radius: 4px;
+  border: 1px solid #979797;
   display: flex;
   justify-content: center;
   align-items: center;
-  letter-spacing: 0.82px;
-  color: #000000;
+  font-size: 16px;
 }
 
 .list {

@@ -5,11 +5,19 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import Video from '@/components/Video/Video'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation } from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import usePageWidthListener from '@/hook/usePageWidthListener'
+import { calculateElementBetween } from '@/utils/utils'
 export default function Library() {
+  const pageWidth = usePageWidthListener()
+  const calculateElementCount = (pageWidth: number): number => {
+    const effectiveWidth = Math.min(pageWidth * 0.95, 1278)
+    const count = Math.floor(effectiveWidth / 246)
+    return Math.max(count, 1)
+  }
   return (
     <div className={styles.page}>
       <div>
@@ -48,6 +56,7 @@ export default function Library() {
           </div>
         </div>
       </div>
+
       <div className={styles.listWrap}>
         <div className={styles.title}>
           <div className={styles.left}>
@@ -63,78 +72,67 @@ export default function Library() {
           <div className={styles.titleRight}>SEE ALL</div>
         </div>
         <div className={styles.listTop}>
-          <Video width={246} />
-          <Video width={246} />
-          <Video width={246} />
-          <Video width={246} />
-          <Video width={246} />
-        </div>
-      </div>
-      <div className={styles.listSwiperWrap}>
-        <div className={styles.title}>
-          <div className={styles.left}>
-            <Image
-              className={styles.titleIcon}
-              src={'/type-top.png'}
-              alt={''}
-              width={48}
-              height={48}
-            />
-            <span>TOP RATED</span>
-          </div>
-        </div>
-        <div className={styles.listTop}>
-          <Video width={246} />
-          <Video width={246} />
-          <Video width={246} />
-          <Video width={246} />
-        </div>
-      </div>
-      <div className={styles.listSwiperWrap}>
-        <div className={styles.title}>
-          <div className={styles.left}>
-            <Image
-              className={styles.titleIcon}
-              src={'/type-top.png'}
-              alt={''}
-              width={48}
-              height={48}
-            />
-            <span>TOP RATED</span>
-          </div>
-          <div className={styles.titleRight}>SEE ALL</div>
-        </div>
-        <div className={styles.listSwiper}>
           <Swiper
-            navigation
-            // install Swiper modules
-            modules={[Pagination, Navigation]}
-            spaceBetween={8}
-            slidesPerView={4}
-            pagination={{ clickable: true }}
+            className={styles.swiperContainer}
+            modules={[Navigation]}
+            spaceBetween={calculateElementBetween(pageWidth)}
+            slidesPerView={calculateElementCount(pageWidth)}
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            }}
+            autoplay={{
+              delay: 1000, // 设置自动切换的时间间隔，单位为毫秒，这里设置为3秒，可按需调整
+              disableOnInteraction: false // 设置为false，表示用户交互（比如手动滑动后）后依然会自动播放，若为true则交互后停止自动播放
+            }}
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
           >
-            <SwiperSlide>
-              <Video width={290} />
+            <div className={styles.customNavigation}>
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
+            </div>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
-            <SwiperSlide>
-              <Video width={290} />
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
-            <SwiperSlide>
-              <Video width={290} />
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
-            <SwiperSlide>
-              <Video width={290} />
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
-            <SwiperSlide>
-              <Video width={290} />
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
-            <SwiperSlide>
-              <Video width={290} />
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
-            <SwiperSlide>
-              <Video width={290} />
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperSlides}>
+              <Video width={246} />
             </SwiperSlide>
           </Swiper>
         </div>

@@ -15,6 +15,17 @@
   align-items: center;
 }
 
+.videoTitle {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
 .controlBtns {
   width: 280px;
   display: flex;

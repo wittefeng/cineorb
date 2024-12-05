@@ -1,11 +1,17 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './header.module.css'
 const Header = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   return (
     <header className={styles.headerContainer}>
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
         <div className={styles.logoWrap}>
           <Image
             src="/logo.png"
@@ -15,7 +21,7 @@ const Header = () => {
             priority
           />
           <div className={styles.logoRight}>
-            <Link href="/" className={styles.shop}>
+            <Link href="/home" className={styles.shop}>
               <Image
                 src="/wecom-temp.png"
                 alt="logo Logo"
@@ -43,6 +49,20 @@ const Header = () => {
           />
           <span className={styles.nickName}>Nickname</span>
         </Link>
+        {/* 下拉菜单部分，根据状态决定是否显示 */}
+        {isDropdownOpen && (
+          <div className={styles.dropdownMenu}>
+            <Link href="/mylibrary" className={styles.dropdownItem}>
+              My Library
+            </Link>
+            <Link href="/setting" className={styles.dropdownItem}>
+              Setting
+            </Link>
+            <Link href="/setting" className={styles.dropdownItem}>
+              Creator Center
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   )

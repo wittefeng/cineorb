@@ -7,8 +7,34 @@
 }
 
 .listWrap {
-  width: 1200px;
+  max-width: 1278px;
   margin-top: 90px;
+  width: 95%;
+}
+
+.customNavigation>div::after {
+  content: '';
+  background-image: url('/arrow-white.png');
+  background-size: 8px 16px;
+  width: 26px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.customNavigation>div {
+  width: 26px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+  opacity: 1;
+  background: #403E3E;
+  margin-top: -44px;
+}
+
+.customNavigation>div:first-of-type::after {
+  transform: rotate(180deg);
 }
 
 
@@ -19,19 +45,15 @@
 }
 
 .titleRight {
-  border-radius: 8px;
-  opacity: 1;
-  background: #FDA80A;
-  width: 160px;
-  height: 52px;
-  font-size: 18px;
-  font-weight: 900;
-  line-height: normal;
+  background-color: #FFA500;
+  width: 100px;
+  height: 42px;
+  border-radius: 4px;
+  border: 1px solid #979797;
   display: flex;
   justify-content: center;
   align-items: center;
-  letter-spacing: 0.82px;
-  color: #000000;
+  font-size: 16px;
 }
 
 .list {
