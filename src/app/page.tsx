@@ -140,7 +140,7 @@ export default function Home() {
       <div className={styles.home2}>
         <div className={styles.home2Wrap}>
           <div>
-            <div className={styles.title2}>TRENDING FILM</div>
+            <div className={styles.title1}>TRENDING FILM</div>
             <div className={styles.leftImages}>
               {currentImages.slice(0, 6).map((image, index) => (
                 <img

@@ -21,24 +21,6 @@ const Contact = () => {
         We're here to help! Reach out for assistance, inquiries, or partnership
         opportunities.
       </div>
-      <div className={styles.formWrap}>
-        <div className={styles.subTitle}>Contact Form</div>
-        <div className={styles.inputWrap}>
-          <input type="text" placeholder="Enter Your Email or mobile number" />
-        </div>
-        <div className={styles.inputWrap}>
-          <input type="text" placeholder="Enter Your Email or mobile number" />
-        </div>
-        <CustomSelect
-          options={options}
-          selectedValue={selectedValue}
-          onSelect={handleSelect}
-        />
-        <div className={styles.textareaWrap}>
-          <textarea placeholder="Enter Your Email or mobile number" />
-        </div>
-        <div className={styles.formBtn}>SUBMIT</div>
-      </div>
       <div className={styles.bottomMessage}>
         <div className={styles.bottomMessageTitle}>
           Direct Contact Information
@@ -59,6 +41,24 @@ const Contact = () => {
           review your message and connect with you to discuss potential
           opportunities.
         </div>
+      </div>
+      <div className={styles.formWrap}>
+        <div className={styles.subTitle}>Contact Form</div>
+        <div className={styles.inputWrap}>
+          <input type="text" placeholder="Enter Your Email or mobile number" />
+        </div>
+        <div className={styles.inputWrap}>
+          <input type="text" placeholder="Enter Your Email or mobile number" />
+        </div>
+        <CustomSelect
+          options={options}
+          selectedValue={selectedValue}
+          onSelect={handleSelect}
+        />
+        <div className={styles.textareaWrap}>
+          <textarea placeholder="Enter Your Email or mobile number" />
+        </div>
+        <div className={styles.formBtn}>SUBMIT</div>
       </div>
     </div>
   )

@@ -21,7 +21,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   width: 80%;
-  max-width: 400px;
+  max-width: 500px;
   padding: 20px;
   position: relative;
 }
@@ -36,9 +36,10 @@
   cursor: pointer;
 }
 
-.modal-image {
+.modalImage {
   width: 100%;
   height: auto;
   margin-bottom: 10px;
+  margin-top: 10px;
   border-radius: 5px;
 }

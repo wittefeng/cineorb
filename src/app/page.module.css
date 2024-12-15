@@ -72,6 +72,16 @@
   justify-content: center;
 }
 
+.title1 {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-align: left;
+}
+
 .title2 {
   font-size: 36px;
   font-weight: 900;
@@ -79,6 +89,7 @@
   text-transform: uppercase;
   letter-spacing: 0px;
   color: #FFFFFF;
+  text-align: right;
 }
 
 .arrowWrap {
@@ -373,9 +384,15 @@
 
   }
 
+  .title1 {
+    width: 90%;
+    margin-left: 5%;
+  }
+
   .title2 {
     width: 90%;
     margin-left: 5%;
+    text-align: left;
   }
 
   .leftImages {

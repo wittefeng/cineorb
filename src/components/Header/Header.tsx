@@ -10,7 +10,7 @@ const Header = () => {
     <header className={styles.headerContainer}>
       <div
         className={styles.header}
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        
       >
         <div className={styles.logoWrap}>
           <Image
@@ -39,7 +39,7 @@ const Header = () => {
         <Link href="/signin" className={styles.singIn}>
           Sign In
         </Link>
-        <Link href="/user" className={styles.headWrap}>
+        <div className={styles.headWrap} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
           <img
             className={styles.headIcon}
             src={
@@ -48,7 +48,7 @@ const Header = () => {
             alt={''}
           />
           <span className={styles.nickName}>Nickname</span>
-        </Link>
+        </div>
         {/* 下拉菜单部分，根据状态决定是否显示 */}
         {isDropdownOpen && (
           <div className={styles.dropdownMenu}>
@@ -58,7 +58,7 @@ const Header = () => {
             <Link href="/setting" className={styles.dropdownItem}>
               Setting
             </Link>
-            <Link href="/setting" className={styles.dropdownItem}>
+            <Link href="/user" className={styles.dropdownItem}>
               Creator Center
             </Link>
           </div>

@@ -77,6 +77,7 @@ export default function Library() {
             modules={[Navigation]}
             spaceBetween={calculateElementBetween(pageWidth)}
             slidesPerView={calculateElementCount(pageWidth)}
+            slidesPerGroup={calculateElementCount(pageWidth)}
             navigation={{
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev'
