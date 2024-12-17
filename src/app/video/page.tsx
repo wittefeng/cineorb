@@ -10,7 +10,8 @@ const VideoPlay = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [progressWidth, setProgressWidth] = useState<number>(0)
-
+  // 添加音量是否静音的状态
+  const [isMuted, setIsMuted] = useState<boolean>(false)
   const offset = 18
 
   // 处理播放/暂停按钮点击
@@ -36,6 +37,14 @@ const VideoPlay = () => {
   const rewind = () => {
     if (videoRef.current) {
       videoRef.current.currentTime -= 10
+    }
+  }
+
+  // 新增：处理音量静音/非静音切换按钮点击
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsMuted(videoRef.current.muted)
     }
   }
 
@@ -129,15 +138,15 @@ const VideoPlay = () => {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
 
   return (
-    <div ref={fullscreenRef}>
+    <div className={styles.container}>
       <h1 className={styles.videoTitle}>Video Title</h1>
 
-      <div className={styles.videoWrap}>
+      <div className={styles.videoWrap} ref={fullscreenRef}>
         <video
           width="100%"
           className="custom-video"
           preload="auto"
-          src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+          src="https://media.w3.org/2010/05/sintel/trailer.mp4"
           ref={videoRef}
           onTimeUpdate={handleTimeUpdate}
           onEnded={() => setIsPlaying(false)}
@@ -148,14 +157,14 @@ const VideoPlay = () => {
         <div className={styles.customControl}>
           <div className={styles.controlBtns}>
             <div onClick={rewind}>
-              <Image src="/rewind.png" alt="Rewind" width={52} height={39} />
+              <Image src="/rewind.png" alt="Rewind" width={24} height={24} />
             </div>
             <div onClick={togglePlayPause}>
               <Image
                 src={isPlaying ? '/pause.png' : '/play.png'}
                 alt={isPlaying ? 'Pause' : 'Play'}
-                width={31}
-                height={47}
+                width={37}
+                height={37}
                 objectFit={'contain'}
               />
             </div>
@@ -163,16 +172,8 @@ const VideoPlay = () => {
               <Image
                 src="/fastforward.png"
                 alt="Fast Forward"
-                width={51}
-                height={39}
-              />
-            </div>
-            <div onClick={toggleFullscreen}>
-              <Image
-                src={isFullscreen ? '/exit-fullscreen.png' : '/fullscreen.png'}
-                alt={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-                width={36}
-                height={36}
+                width={24}
+                height={24}
               />
             </div>
           </div>
@@ -201,6 +202,29 @@ const VideoPlay = () => {
             <span className={styles.endTime}>
               {formatTime(videoRef.current?.duration || 0)}
             </span>
+            {/* 添加音量控制按钮 */}
+            <div onClick={toggleMute} className={styles.otherIcon}>
+              <Image
+                src={isMuted ? '/mute.png' : '/unmute.png'}
+                alt={isMuted ? 'Mute' : 'Unmute'}
+                width={25}
+                height={19}
+              />
+            </div>
+            <div onClick={toggleFullscreen} className={styles.otherIcon}>
+              <Image
+                src={'/fullscreen.png'}
+                alt={'Fullscreen'}
+                width={22}
+                height={22}
+              />
+              {/* <Image
+                src={isFullscreen ? '/exit-fullscreen.png' : '/fullscreen.png'}
+                alt={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+                width={36}
+                height={36}
+              /> */}
+            </div>
           </div>
         </div>
       </div>
