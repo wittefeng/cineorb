@@ -36,7 +36,11 @@ export default function MyLibrary() {
             />
             <span>TOP RATED</span>
           </div>
-          <Link href={'/category/kkk'} className={styles.titleRight}>
+          <Link
+            href={'/category/kkk'}
+            target={'_blank'}
+            className={styles.titleRight}
+          >
             ALL SEE
           </Link>
         </div>
@@ -119,7 +123,11 @@ export default function MyLibrary() {
             />
             <span>TOP RATED</span>
           </div>
-          <Link href={'/category/kkk'} className={styles.titleRight}>
+          <Link
+            href={'/category/kkk'}
+            target={'_blank'}
+            className={styles.titleRight}
+          >
             ALL SEE
           </Link>
         </div>
