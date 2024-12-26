@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
+import Link from 'next/link'
 import Video from '@/components/Video/Video'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
@@ -35,7 +36,9 @@ export default function MyLibrary() {
             />
             <span>TOP RATED</span>
           </div>
-          <div className={styles.titleRight}>SEE ALL</div>
+          <Link href={'/category/kkk'} className={styles.titleRight}>
+            ALL SEE
+          </Link>
         </div>
         <div className={styles.listTop}>
           <Swiper
@@ -116,7 +119,9 @@ export default function MyLibrary() {
             />
             <span>TOP RATED</span>
           </div>
-          <div className={styles.titleRight}>SEE ALL</div>
+          <Link href={'/category/kkk'} className={styles.titleRight}>
+            ALL SEE
+          </Link>
         </div>
         <div className={styles.listTop}>
           <Swiper

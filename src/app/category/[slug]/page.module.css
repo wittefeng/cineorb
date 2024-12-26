@@ -1,0 +1,111 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: rgba(159, 103, 7, 0.4);
+}
+
+.headWrap {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 80px 0 60px 0;
+}
+
+.head {
+  display: flex;
+}
+
+.titleWrap {
+  margin-left: 40px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: normal;
+  color: #FFFFFF;
+}
+
+.priceBtn {
+  border-radius: 8px;
+  opacity: 1;
+  background: #FDA80A;
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 0.82px;
+  color: #000000;
+  margin-top: 18px;
+}
+
+.headImg {
+  width: 312px;
+  height: 162px;
+}
+
+.filmInfo {
+  margin-top: 18px;
+  font-size: 16px;
+  font-weight: 350;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.listWrap {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+.itemWrap {
+  margin-top: 20px;
+  display: flex;
+}
+
+.itemInfoWrap {
+  margin-left: 18px;
+}
+
+.itemTitle {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 52px;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.itemTime {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.itemInfo {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #FFFFFF;
+  padding-top: 2px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+
+  .headWrap,
+  .listWrap {
+    width: 100%;
+    padding: 20px 20px;
+  }
+
+}
