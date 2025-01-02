@@ -33,7 +33,7 @@ const ResolutionDropdown = ({
 
   // 点击下拉菜单外部区域时关闭下拉菜单
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
+    const handleClickOutside = () => {
       if (dropdownRef.current) {
         setIsOpen(false)
       }
@@ -211,7 +211,6 @@ const VideoPlay = () => {
   const handleResolutionChange = (newResolution: any) => {
     setResolution(newResolution)
     if (videoRef.current) {
-      const currentSrc = videoRef.current.src
       videoRef.current.src = '' // 先移除src属性
       setTimeout(() => {
         if (videoRef && videoRef.current) {
