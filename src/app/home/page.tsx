@@ -12,6 +12,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import usePageWidthListener from '@/hook/usePageWidthListener'
 import { calculateElementBetween } from '@/utils/utils'
+import TopTag from './TopTag'
 export default function Home() {
   const pageWidth = usePageWidthListener()
   const calculateElementCount = (pageWidth: number): number => {
@@ -26,35 +27,18 @@ export default function Home() {
         <div className={styles.first}>
           <div>
             <Video />
-            <Image
-              className={styles.chartsIcon}
-              src={'/charts-1.png'}
-              alt={''}
-              width={80}
-              height={50}
-            />
+            <TopTag number={1} />
           </div>
         </div>
         <div className={styles.ts}>
           <div>
             <Video />
-            <Image
-              className={styles.chartsIcon}
-              src={'/charts-2.png'}
-              alt={''}
-              width={80}
-              height={50}
-            />
+
+            <TopTag number={2} />
           </div>
           <div>
             <Video />
-            <Image
-              className={styles.chartsIcon}
-              src={'/charts-3.png'}
-              alt={''}
-              width={80}
-              height={50}
-            />
+            <TopTag number={3} />
           </div>
         </div>
       </div>

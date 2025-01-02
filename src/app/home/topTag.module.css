@@ -1,0 +1,35 @@
+.topTag {
+  background-color: orange;
+  color: white;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0 0 0;
+}
+
+.topTag::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  background: orange;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.topTag div:last-child {
+  margin-top: 5px;
+}

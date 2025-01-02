@@ -31,12 +31,14 @@ const ModalComponent: React.FC<ModalProps> = ({
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
-          <Image src={'/delete.png'} alt={''} width={24} height={24} />
-        </button>
-        <h2>{title}</h2>
+        <div className={styles.textWrap}>
+          <button className={styles.closeButton} onClick={onClose}>
+            <Image src={'/delete.png'} alt={''} width={24} height={24} />
+          </button>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.description}>{description}</p>
+        </div>
         <img src={imageUrl} alt={title} className={styles.modalImage} />
-        <p>{description}</p>
       </div>
     </div>
   )

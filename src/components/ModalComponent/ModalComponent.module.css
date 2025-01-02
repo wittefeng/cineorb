@@ -17,12 +17,6 @@
 
 
 .modalContent {
-  background-color: #F19F3D;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  width: 80%;
-  max-width: 500px;
-  padding: 20px;
   position: relative;
 }
 
@@ -37,9 +31,28 @@
 }
 
 .modalImage {
+  width: 400px;
+  height: 400px;
+}
+
+.textWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
+  height: 100%;
+  color: white;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 0 20px 20px 20px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.description {
+  font-size: 10px;
 }

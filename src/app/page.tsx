@@ -112,7 +112,7 @@ export default function Home() {
         src="/home-1.png"
         alt="logo Logo"
         width={844}
-        height={283}
+        height={244}
       />
       <div className={styles.headText}>
         <div className={styles.title}>Where Every Story Comes Alive! </div>
