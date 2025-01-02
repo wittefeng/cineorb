@@ -81,6 +81,13 @@
   position: relative;
 }
 
+.otherTextWrap {
+  cursor: pointer;
+  margin: 0 15px;
+  font-size: 16px;
+  color: white;
+}
+
 .otherIcon {
   cursor: pointer;
   margin: 0 15px;
@@ -177,4 +184,54 @@
 
 .save {
   right: 24px;
+}
+
+
+/* 整体下拉区域的样式，包含触发按钮和下拉内容区域 */
+.otherTextWrap {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  color: white;
+}
+
+/* 下拉菜单触发按钮的样式，即显示当前分辨率的区域 */
+.otherTextWrap>div {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+
+/* 下拉菜单内容区域的通用样式 */
+.dropdownContent {
+  position: absolute;
+  background-color: #fff;
+  min-width: 100px;
+  z-index: 1;
+  top: 100%;
+  /* 让下拉菜单显示在触发按钮下方 */
+  left: 0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* 当下拉菜单处于打开状态时显示 */
+.otherTextWrap.is-open.dropdownContent {
+  display: block;
+}
+
+/* 下拉菜单中每个选项的样式 */
+.dropdownOption {
+  padding: 8px 10px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownOption:hover {
+  background-color: #f1f1f1;
 }

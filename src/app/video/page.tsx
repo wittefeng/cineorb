@@ -3,6 +3,75 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
 
+// 视频源配置对象，以不同分辨率作为键，方便扩展不同分辨率的相关信息及视频地址
+const videoSources: any = {
+  '2k': {
+    source: 'http://vjs.zencdn.net/v/oceans.mp4',
+    text: '2k'
+  },
+  '4k': {
+    source: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+    text: '4k'
+  },
+  '1080p': {
+    source: 'https://example.com/your_1080p_video.mp4', // 示例，需替换真实地址
+    text: '1080p'
+  },
+  '720p': {
+    source: 'https://example.com/your_720p_video.mp4', // 示例，需替换真实地址
+    text: '720p'
+  }
+}
+
+const ResolutionDropdown = ({
+  videoSources,
+  selectedResolution,
+  onResolutionChange
+}: any) => {
+  const dropdownRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  // 点击下拉菜单外部区域时关闭下拉菜单
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (dropdownRef.current) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  // 处理分辨率选项点击事件
+  const handleOptionClick = (resolution: any) => {
+    onResolutionChange(resolution)
+    setIsOpen(false)
+  }
+
+  return (
+    <div ref={dropdownRef} className={styles.otherTextWrap}>
+      <div onClick={() => setIsOpen(!isOpen)}>
+        {videoSources[selectedResolution].text}
+      </div>
+      {isOpen && (
+        <div className={styles.dropdownContent}>
+          {Object.keys(videoSources).map((key) => (
+            <div
+              key={key}
+              className={styles.dropdownOption}
+              onClick={() => handleOptionClick(key)}
+            >
+              {videoSources[key].text}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 const VideoPlay = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const progressRef = useRef<HTMLDivElement | null>(null)
@@ -10,9 +79,10 @@ const VideoPlay = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [progressWidth, setProgressWidth] = useState<number>(0)
-  // 添加音量是否静音的状态
   const [isMuted, setIsMuted] = useState<boolean>(false)
   const offset = 18
+  // 添加状态来管理视频分辨率，初始设为2k
+  const [resolution, setResolution] = useState<string>('2k')
 
   // 处理播放/暂停按钮点击
   const togglePlayPause = () => {
@@ -40,7 +110,7 @@ const VideoPlay = () => {
     }
   }
 
-  // 新增：处理音量静音/非静音切换按钮点击
+  // 处理音量静音/非静音切换按钮点击
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted
@@ -137,6 +207,23 @@ const VideoPlay = () => {
   const fullscreenRef = useRef<any>(null)
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
 
+  // 处理分辨率切换的函数，根据选择的分辨率进行切换
+  const handleResolutionChange = (newResolution: any) => {
+    setResolution(newResolution)
+    if (videoRef.current) {
+      const currentSrc = videoRef.current.src
+      videoRef.current.src = '' // 先移除src属性
+      setTimeout(() => {
+        if (videoRef && videoRef.current) {
+          // 根据配置对象中的分辨率参数来设置视频源地址
+          videoRef.current.src = videoSources[newResolution].source
+          videoRef.current?.load() // 可以调用load方法确保加载
+          setIsPlaying(false)
+        }
+      }, 10)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.videoTitle}>Video Title</h1>
@@ -146,7 +233,8 @@ const VideoPlay = () => {
           width="100%"
           className="custom-video"
           preload="auto"
-          src="https://media.w3.org/2010/05/sintel/trailer.mp4"
+          // 根据分辨率状态来设置不同的视频源地址，从配置对象中获取
+          src={videoSources[resolution].source}
           ref={videoRef}
           onTimeUpdate={handleTimeUpdate}
           onEnded={() => setIsPlaying(false)}
@@ -202,7 +290,6 @@ const VideoPlay = () => {
             <span className={styles.endTime}>
               {formatTime(videoRef.current?.duration || 0)}
             </span>
-            {/* 添加音量控制按钮 */}
             <div onClick={toggleMute} className={styles.otherIcon}>
               <Image
                 src={isMuted ? '/mute.png' : '/unmute.png'}
@@ -211,6 +298,11 @@ const VideoPlay = () => {
                 height={19}
               />
             </div>
+            <ResolutionDropdown
+              videoSources={videoSources}
+              selectedResolution={resolution}
+              onResolutionChange={handleResolutionChange}
+            />
             <div onClick={toggleFullscreen} className={styles.otherIcon}>
               <Image
                 src={'/fullscreen.png'}
@@ -218,12 +310,6 @@ const VideoPlay = () => {
                 width={22}
                 height={22}
               />
-              {/* <Image
-                src={isFullscreen ? '/exit-fullscreen.png' : '/fullscreen.png'}
-                alt={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-                width={36}
-                height={36}
-              /> */}
             </div>
           </div>
         </div>
