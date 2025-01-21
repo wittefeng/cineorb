@@ -6,12 +6,14 @@ import Link from 'next/link'
 import styles from './header.module.css'
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+
+  const handleSearchClick = () => {
+    window.location.href = '/category/' + inputValue
+  }
   return (
     <header className={styles.headerContainer}>
-      <div
-        className={styles.header}
-        
-      >
+      <div className={styles.header}>
         <div className={styles.logoWrap}>
           <Image
             src="/logo.png"
@@ -39,7 +41,30 @@ const Header = () => {
         <Link href="/signin" className={styles.singIn}>
           Sign In
         </Link>
-        <div className={styles.headWrap} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+        {/* 搜索 */}
+        <div className={styles.searchWrap}>
+          <Image
+            src="/search.png"
+            alt="logo Logo"
+            width={16}
+            height={16}
+            priority
+          />
+          <input
+            placeholder="please enter"
+            className={styles.searchInput}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            type="text"
+          />
+          <div className={styles.searchBtn} onClick={handleSearchClick}>
+            Search
+          </div>
+        </div>
+        <div
+          className={styles.headWrap}
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
           <img
             className={styles.headIcon}
             src={
