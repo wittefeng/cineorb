@@ -67,46 +67,46 @@ export default function MyLibrary() {
               <div className="swiper-button-next"></div>
             </div>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
           </Swiper>
         </div>
@@ -154,46 +154,46 @@ export default function MyLibrary() {
               <div className="swiper-button-next"></div>
             </div>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
             <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
+              <Video width={246} imageUrl={''} id={''} />
             </SwiperSlide>
           </Swiper>
         </div>
