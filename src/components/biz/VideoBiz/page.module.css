@@ -1,0 +1,237 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+  /* 确保容器至少占满视口高度，方便垂直居中 */
+}
+
+.videoWrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.customControl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.videoTitle {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.controlBtns {
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.controlBtns>div {
+  cursor: pointer;
+}
+
+.controlProgress {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  padding-bottom: 10px;
+}
+
+.startTime,
+.endTime {
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  width: 50px;
+  text-align: left;
+}
+
+.endTime {
+  text-align: right;
+}
+
+.progress {
+  flex: 1;
+  border-radius: 4.5px;
+  background: #979797;
+  height: 12px;
+  position: relative;
+}
+
+.otherTextWrap {
+  cursor: pointer;
+  margin: 0 15px;
+  font-size: 16px;
+  color: white;
+}
+
+.otherIcon {
+  cursor: pointer;
+  margin: 0 15px;
+  font-size: 0;
+}
+
+.currentTime {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.5381;
+  background: #3CA8FF;
+  border-radius: 4.5px;
+}
+
+.currentOval {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-top: -8.5px;
+  opacity: 1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.1617) 100%), #3CA8FF;
+  background-blend-mode: multiply, normal;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2328);
+  cursor: pointer;
+  transition: none
+}
+
+.info {
+  color: white;
+  padding: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.headWrap {
+  display: flex;
+  align-items: center;
+}
+
+.headIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nickName {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  margin-left: 10px;
+}
+
+.title {
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.subTitle {
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.like {
+  right: 80px;
+
+}
+
+.like,
+.save {
+  position: absolute;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+.save {
+  right: 24px;
+}
+
+
+/* 整体下拉区域的样式，包含触发按钮和下拉内容区域 */
+.otherTextWrap {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  color: white;
+}
+
+/* 下拉菜单触发按钮的样式，即显示当前分辨率的区域 */
+.otherTextWrap>div {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+
+/* 下拉菜单内容区域的通用样式 */
+.dropdownContent {
+  position: absolute;
+  background-color: #fff;
+  min-width: 100px;
+  z-index: 1;
+  top: 100%;
+  /* 让下拉菜单显示在触发按钮下方 */
+  left: 0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* 当下拉菜单处于打开状态时显示 */
+.otherTextWrap.is-open.dropdownContent {
+  display: block;
+}
+
+/* 下拉菜单中每个选项的样式 */
+.dropdownOption {
+  padding: 8px 10px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownOption:hover {
+  background-color: #f1f1f1;
+}

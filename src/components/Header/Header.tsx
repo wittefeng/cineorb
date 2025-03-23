@@ -1,12 +1,35 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './header.module.css'
+import {
+  clearUserInfo,
+  DefaultUserInfo,
+  getUserInfo,
+  IUserInfo
+} from '@/utils/userinfo'
+import { checkUserLoginStatus } from '@/services/apiService'
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
+  const checkUserStatus = async (token: string) => {
+    const response = await checkUserLoginStatus(token)
+    console.log('response', response)
+  }
+  useEffect(() => {
+    const userInfoData = getUserInfo()
+    console.log('userInfoData', userInfoData)
+
+    if (userInfoData) {
+      setUserInfo(userInfoData)
+      checkUserStatus(userInfoData.user_token)
+    } else {
+      clearUserInfo()
+    }
+  }, [])
 
   const handleSearchClick = () => {
     window.location.href = '/category/' + inputValue
@@ -38,9 +61,11 @@ const Header = () => {
             </Link>
           </div>
         </div>
-        <Link href="/signin" className={styles.singIn}>
-          Sign In
-        </Link>
+        {userInfo.user_token === '' && (
+          <Link href="/signin" className={styles.singIn}>
+            Sign In
+          </Link>
+        )}
         {/* 搜索 */}
         <div className={styles.searchWrap}>
           <Image
@@ -65,14 +90,8 @@ const Header = () => {
           className={styles.headWrap}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <img
-            className={styles.headIcon}
-            src={
-              'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-            }
-            alt={''}
-          />
-          <span className={styles.nickName}>Nickname</span>
+          <img className={styles.headIcon} src={userInfo.user_logo} alt={''} />
+          <span className={styles.nickName}>{userInfo.nickname}</span>
         </div>
         {/* 下拉菜单部分，根据状态决定是否显示 */}
         {isDropdownOpen && (

@@ -67,7 +67,11 @@
   display: flex;
   justify-content: left;
   margin-top: 16px;
-  align-items: baseline;
+  align-items: center;
+}
+
+.block {
+  font-size: 0;
 }
 
 .dealText {

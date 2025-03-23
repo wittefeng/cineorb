@@ -2,26 +2,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
+import {
+  clearUserInfo,
+  DefaultUserInfo,
+  getUserInfo,
+  IUserInfo
+} from '@/utils/userinfo'
+import {
+  checkUserLoginStatus,
+  sendCollectionData,
+  sendLikeData
+} from '@/services/apiService'
 
 // 视频源配置对象，以不同分辨率作为键，方便扩展不同分辨率的相关信息及视频地址
-const videoSources: any = {
-  '2k': {
-    source: 'http://vjs.zencdn.net/v/oceans.mp4',
-    text: '2k'
-  },
-  '4k': {
-    source: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-    text: '4k'
-  },
-  '1080p': {
-    source: 'https://example.com/your_1080p_video.mp4', // 示例，需替换真实地址
-    text: '1080p'
-  },
-  '720p': {
-    source: 'https://example.com/your_720p_video.mp4', // 示例，需替换真实地址
-    text: '720p'
-  }
-}
 
 const ResolutionDropdown = ({
   videoSources,
@@ -72,7 +65,48 @@ const ResolutionDropdown = ({
   )
 }
 
-const VideoPlay = () => {
+const VideoPlayBiz = ({ videoData }: any) => {
+  console.log('videoData', videoData)
+  const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
+  const checkUserStatus = async (token: string) => {
+    const response = await checkUserLoginStatus(token)
+    console.log('response', response)
+  }
+  useEffect(() => {
+    const userInfoData = getUserInfo()
+    console.log('userInfoData', userInfoData)
+
+    if (userInfoData) {
+      setUserInfo(userInfoData)
+      checkUserStatus(userInfoData.user_token)
+    } else {
+      clearUserInfo()
+    }
+  }, [])
+  const handleSendLike = async () => {
+    sendLikeData(userInfo.user_token, videoData.video_info.id)
+  }
+  const handleSendCollection = async () => {
+    sendCollectionData(userInfo.user_token, videoData.video_info.id)
+  }
+  const videoSources: any = {
+    '2k': {
+      source: videoData.video_info.file_url,
+      text: '2k'
+    },
+    '4k': {
+      source: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+      text: '4k'
+    },
+    '1080p': {
+      source: 'https://example.com/your_1080p_video.mp4', // 示例，需替换真实地址
+      text: '1080p'
+    },
+    '720p': {
+      source: 'https://example.com/your_720p_video.mp4', // 示例，需替换真实地址
+      text: '720p'
+    }
+  }
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const progressRef = useRef<HTMLDivElement | null>(null)
   const [currentTime, setCurrentTime] = useState<number>(0)
@@ -225,7 +259,7 @@ const VideoPlay = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.videoTitle}>Video Title</h1>
+      <h1 className={styles.videoTitle}>{videoData.video_info.title}</h1>
 
       <div className={styles.videoWrap} ref={fullscreenRef}>
         <video
@@ -317,24 +351,18 @@ const VideoPlay = () => {
         <div className={styles.headWrap}>
           <img
             className={styles.headIcon}
-            src={
-              'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-            }
+            src={videoData.video_info.logo}
             alt={''}
           />
           <span className={styles.nickName}>Nickname</span>
         </div>
-        <div className={styles.title}>
-          探秘最便宜的欧洲国家！一日三餐，要花多少钱？
-        </div>
-        <div className={styles.subTitle}>
-          简介：探秘最便宜的欧洲国家！一日三餐，要花多少钱？探秘最便宜的欧洲国家！一日三餐，要花多少钱？探秘最便宜的欧洲国家！一日三餐，要花多少钱？探秘最便宜的欧洲国家！一日三餐，要花多少钱？探秘最便宜的欧洲国家！一日三餐，要花多少钱？探秘最便宜的欧洲国家！一日三餐，要花多少钱？
-        </div>
-        <div className={styles.like}>
+        <div className={styles.title}>{videoData.video_info.title}</div>
+        <div className={styles.subTitle}>{videoData.video_info.subtitle}</div>
+        <div className={styles.like} onClick={handleSendLike}>
           <Image src={'/like.png'} width={36} height={36} alt={''} />
           Like
         </div>
-        <div className={styles.save}>
+        <div className={styles.save} onClick={handleSendCollection}>
           <Image src={'/save.png'} width={36} height={36} alt={''} />
           Save
         </div>
@@ -343,4 +371,4 @@ const VideoPlay = () => {
   )
 }
 
-export default VideoPlay
+export default VideoPlayBiz

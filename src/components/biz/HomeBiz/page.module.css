@@ -1,0 +1,152 @@
+.page {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/arc-1.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 1920px auto;
+  padding-bottom: 30px;
+}
+
+.first {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.first>div {
+  position: relative;
+}
+
+.chartsIcon {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  z-index: 1;
+}
+
+.ts {
+  display: flex;
+  margin-top: 30px;
+}
+
+.ts>div {
+  position: relative;
+  margin: 0 90px;
+}
+
+.listWrap {
+  max-width: 1278px;
+  margin-top: 90px;
+  /* width: 95%; */
+}
+
+.customNavigation>div::after {
+  content: '';
+  background-image: url('/arrow-white.png');
+  background-size: 8px 16px;
+  width: 26px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.customNavigation>div {
+  width: 26px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+  opacity: 1;
+  background: #403E3E;
+  margin-top: -44px;
+}
+
+.customNavigation>div:first-of-type::after {
+  transform: rotate(180deg);
+}
+
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleRight {
+  background-color: #FFA500;
+  width: 100px;
+  height: 42px;
+  border-radius: 4px;
+  border: 1px solid #979797;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.list {
+  margin-top: 30px;
+  display: flex;
+}
+
+.listTop {
+  margin-top: 30px;
+  display: flex;
+
+}
+
+.videoBox {
+  margin-right: 6px;
+}
+
+.left {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.left>span {
+  padding-left: 5px;
+}
+
+.listSwiper {
+
+  width: 1158px;
+  margin-top: 30px;
+}
+
+@media (max-width: 1278px) {
+
+  .listWrap {
+    max-width: 95vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .ts {
+    flex-direction: column;
+    margin-top: 0px;
+  }
+
+  .ts>div {
+    margin-top: 30px;
+  }
+
+  .listWrap,
+  .listSwiperWrap {
+    width: 95%;
+  }
+
+  .listTop {
+    flex-wrap: wrap;
+  }
+}

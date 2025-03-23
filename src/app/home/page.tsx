@@ -1,308 +1,41 @@
-'use client'
+import { getDetailData, getLibraryData } from '@/services/apiService'
+import HomeBiz from '@/components/biz/HomeBiz/page'
 
-import React from 'react'
-import Image from 'next/image'
-import styles from './page.module.css'
-import Link from 'next/link'
-import Video from '@/components/Video/Video'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import usePageWidthListener from '@/hook/usePageWidthListener'
-import { calculateElementBetween } from '@/utils/utils'
-import TopTag from './TopTag'
-export default function Home() {
-  const pageWidth = usePageWidthListener()
-  const calculateElementCount = (pageWidth: number): number => {
-    const effectiveWidth = Math.min(pageWidth * 0.95, 1278)
-    const count = Math.floor(effectiveWidth / 246)
-    return Math.max(count, 1)
+const fetchData = async (id: number): Promise<any> => {
+  // 这里可以替换为实际的请求代码，例如使用 fetch 或 axios
+  // 为了示例，我们简单模拟一个异步操作
+  const response = await getDetailData(id)
+  return { uniqueId: id, data: response.data }
+}
+export default async () => {
+  const response = await getLibraryData()
+  const libraryList = response.data.library_top
+  const topLibraryList = response.data.library_best
+  // console.log('libraryList', libraryList.length)
+  // console.log('libraryList', libraryList)
+
+  const fetchAllData = async () => {
+    try {
+      // 并行请求所有 ID 的数据
+      const promises = libraryList.map((item: any) => fetchData(item.id))
+      const allData = await Promise.all(promises)
+      console.log('Combined data:', allData)
+      return allData
+      // 这里可以添加更多的逻辑，例如更新 UI、保存到本地存储等
+    } catch (err) {
+      console.log('Failed to fetch data', err)
+    } finally {
+      console.log('false', false)
+    }
   }
 
-  return (
-    <div className={styles.page}>
-      <div>
-        <div className={styles.first}>
-          <div>
-            <Video />
-            <TopTag number={1} />
-          </div>
-        </div>
-        <div className={styles.ts}>
-          <div>
-            <Video />
+  const dataLibrary = await fetchAllData()
 
-            <TopTag number={2} />
-          </div>
-          <div>
-            <Video />
-            <TopTag number={3} />
-          </div>
-        </div>
-      </div>
-      <div className={styles.listWrap}>
-        <div className={styles.title}>
-          <div className={styles.left}>
-            <Image
-              className={styles.titleIcon}
-              src={'/type-top.png'}
-              alt={''}
-              width={48}
-              height={48}
-            />
-            <span>TOP RATED</span>
-          </div>
-          <Link
-            href={'/category/kkk'}
-            target={'_blank'}
-            className={styles.titleRight}
-          >
-            ALL SEE
-          </Link>
-        </div>
-        <div className={styles.listTop}>
-          <Swiper
-            className={styles.swiperContainer}
-            modules={[Navigation, Autoplay]}
-            spaceBetween={calculateElementBetween(pageWidth)}
-            slidesPerView={calculateElementCount(pageWidth)}
-            slidesPerGroup={calculateElementCount(pageWidth)}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }}
-            autoplay={{
-              delay: 10000,
-              disableOnInteraction: false
-            }}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
-            <div className={styles.customNavigation}>
-              <div className="swiper-button-prev"></div>
-              <div className="swiper-button-next"></div>
-            </div>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </div>
-      <div className={styles.listWrap}>
-        <div className={styles.title}>
-          <div className={styles.left}>
-            <Image
-              className={styles.titleIcon}
-              src={'/type-top.png'}
-              alt={''}
-              width={48}
-              height={48}
-            />
-            <span>TOP RATED</span>
-          </div>
-          <Link
-            href={'/category/kkk'}
-            target={'_blank'}
-            className={styles.titleRight}
-          >
-            ALL SEE
-          </Link>
-        </div>
-        <div className={styles.listTop}>
-          <Swiper
-            className={styles.swiperContainer}
-            modules={[Navigation]}
-            spaceBetween={calculateElementBetween(pageWidth)}
-            slidesPerView={calculateElementCount(pageWidth)}
-            slidesPerGroup={calculateElementCount(pageWidth)}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }}
-            autoplay={{
-              delay: 1000, // 设置自动切换的时间间隔，单位为毫秒，这里设置为3秒，可按需调整
-              disableOnInteraction: false // 设置为false，表示用户交互（比如手动滑动后）后依然会自动播放，若为true则交互后停止自动播放
-            }}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
-            <div className={styles.customNavigation}>
-              <div className="swiper-button-prev"></div>
-              <div className="swiper-button-next"></div>
-            </div>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </div>
-      <div className={styles.listWrap}>
-        <div className={styles.title}>
-          <div className={styles.left}>
-            <Image
-              className={styles.titleIcon}
-              src={'/type-top.png'}
-              alt={''}
-              width={48}
-              height={48}
-            />
-            <span>TOP RATED</span>
-          </div>
-          <Link
-            href={'/category/kkk'}
-            target={'_blank'}
-            className={styles.titleRight}
-          >
-            ALL SEE
-          </Link>
-        </div>
-        <div className={styles.listTop}>
-          <Swiper
-            className={styles.swiperContainer}
-            modules={[Navigation]}
-            spaceBetween={calculateElementBetween(pageWidth)}
-            slidesPerView={calculateElementCount(pageWidth)}
-            slidesPerGroup={calculateElementCount(pageWidth)}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }}
-            autoplay={{
-              delay: 1000, // 设置自动切换的时间间隔，单位为毫秒，这里设置为3秒，可按需调整
-              disableOnInteraction: false // 设置为false，表示用户交互（比如手动滑动后）后依然会自动播放，若为true则交互后停止自动播放
-            }}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
-            <div className={styles.customNavigation}>
-              <div className="swiper-button-prev"></div>
-              <div className="swiper-button-next"></div>
-            </div>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperSlides}>
-              <Video width={246} />
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </div>
-    </div>
+  return (
+    <>
+      {dataLibrary && (
+        <HomeBiz dataLibrary={dataLibrary} topLibrary={topLibraryList} />
+      )}
+    </>
   )
 }
