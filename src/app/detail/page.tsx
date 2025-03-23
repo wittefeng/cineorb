@@ -31,7 +31,7 @@ const Detail = () => {
       </div>
       <div className={styles.videoList}>
         <div className={styles.videoItemItem}>
-          <Video width={290} />
+          <Video width={290} imageUrl={''} id={''} />
           <div className={styles.videoItemRight}>
             <div className={styles.videoItemName}>VIDEOS NAME</div>
             <div className={styles.videoItemTime}>2024-11-06 45分钟</div>
@@ -44,7 +44,7 @@ const Detail = () => {
           </div>
         </div>
         <div className={styles.videoItemItem}>
-          <Video width={290} />
+          <Video width={290} imageUrl={''} id={''} />
           <div className={styles.videoItemRight}>
             <div className={styles.videoItemName}>VIDEOS NAME</div>
             <div className={styles.videoItemTime}>2024-11-06 45分钟</div>
@@ -57,7 +57,7 @@ const Detail = () => {
           </div>
         </div>
         <div className={styles.videoItemItem}>
-          <Video width={290} />
+          <Video width={290} imageUrl={''} id={''} />
           <div className={styles.videoItemRight}>
             <div className={styles.videoItemName}>VIDEOS NAME</div>
             <div className={styles.videoItemTime}>2024-11-06 45分钟</div>
