@@ -3,10 +3,7 @@ import CategoryBiz from '@/components/biz/CategoryBiz/page'
 import { getDetailData } from '@/services/apiService'
 import React from 'react'
 
-interface categoryParams {
-  id: string
-}
-const Category = async ({ params }: { params: categoryParams }) => {
+const Category = async ({ params }: any) => {
   const { id } = await params
   if (id) {
     try {

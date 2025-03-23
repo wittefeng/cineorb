@@ -2,10 +2,7 @@ import VideoPlayBiz from '@/components/biz/VideoBiz/page'
 import { getVideoData } from '@/services/apiService'
 import React from 'react'
 
-interface VideoPlayParams {
-  id: string
-}
-const VideoPlay = async ({ params }: { params: VideoPlayParams }) => {
+const VideoPlay = async ({ params }: any) => {
   const { id } = await params
   if (id) {
     try {
