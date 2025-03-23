@@ -13,11 +13,11 @@ const VideoManagement = () => {
         </p>
       </div>
       <div className={styles.videoManagementList}>
-        <Video width={212} />
-        <Video width={212} />
-        <Video width={212} />
-        <Video width={212} />
-        <Video width={212} />
+        <Video width={212} imageUrl={''} id={''} />
+        <Video width={212} imageUrl={''} id={''} />
+        <Video width={212} imageUrl={''} id={''} />
+        <Video width={212} imageUrl={''} id={''} />
+        <Video width={212} imageUrl={''} id={''} />
       </div>
     </div>
   )
