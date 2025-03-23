@@ -33,7 +33,7 @@ const CategoryBiz = ({ dataLibrary }: any) => {
       </div>
       <div className={styles.listWrap}>
         {dataLibrary.video_list.map((item: any, index: number) => (
-          <div className={styles.itemWrap}>
+          <div className={styles.itemWrap} key={index}>
             <Video width={290} imageUrl={item.logo} id={item.id} />
             <div className={styles.itemInfoWrap}>
               <div className={styles.itemTitle}>{item.title}</div>

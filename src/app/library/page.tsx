@@ -7,7 +7,7 @@ const fetchData = async (id: number): Promise<any> => {
   const response = await getDetailData(id)
   return { uniqueId: id, data: response.data }
 }
-export default async () => {
+const Library = async () => {
   const response = await getCategoryData()
   const libraryList = response.data.library
   // console.log('libraryList', libraryList.length)
@@ -32,3 +32,4 @@ export default async () => {
 
   return <LibraryBiz dataLibrary={dataLibrary} />
 }
+export default Library

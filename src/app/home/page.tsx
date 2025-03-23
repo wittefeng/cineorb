@@ -7,7 +7,7 @@ const fetchData = async (id: number): Promise<any> => {
   const response = await getDetailData(id)
   return { uniqueId: id, data: response.data }
 }
-export default async () => {
+const Home = async () => {
   const response = await getLibraryData()
   const libraryList = response.data.library_top
   const topLibraryList = response.data.library_best
@@ -39,3 +39,5 @@ export default async () => {
     </>
   )
 }
+
+export default Home
