@@ -1,3 +1,4 @@
+'use client'
 import VideoPlayBiz from '@/components/biz/VideoBiz/page'
 import { getVideoData } from '@/services/apiService'
 import React from 'react'

@@ -68,13 +68,14 @@ const ResolutionDropdown = ({
 const VideoPlayBiz = ({ videoData }: any) => {
   console.log('videoData', videoData)
   const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
+  const [isLike, setIsLike] = useState(false)
+  const [isCollect, setIsCollect] = useState(false)
   const checkUserStatus = async (token: string) => {
-    const response = await checkUserLoginStatus(token)
-    console.log('response', response)
+    checkUserLoginStatus(token)
   }
   useEffect(() => {
+    setIsLike(!!videoData.is_like)
     const userInfoData = getUserInfo()
-    console.log('userInfoData', userInfoData)
 
     if (userInfoData) {
       setUserInfo(userInfoData)
@@ -84,26 +85,27 @@ const VideoPlayBiz = ({ videoData }: any) => {
     }
   }, [])
   const handleSendLike = async () => {
-    sendLikeData(userInfo.user_token, videoData.video_info.id)
+    await sendLikeData(userInfo.user_token, videoData.video_info.id)
+    setIsLike(true)
   }
   const handleSendCollection = async () => {
-    sendCollectionData(userInfo.user_token, videoData.video_info.id)
+    const res = await sendCollectionData(
+      userInfo.user_token,
+      videoData.video_info.id
+    )
+    setIsCollect(!!res.data.is_collection)
   }
   const videoSources: any = {
-    '2k': {
-      source: videoData.video_info.file_url,
-      text: '2k'
+    '360p': {
+      source: videoData.video_info.file_url_360,
+      text: '360p'
     },
-    '4k': {
-      source: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-      text: '4k'
-    },
-    '1080p': {
-      source: 'https://example.com/your_1080p_video.mp4', // 示例，需替换真实地址
-      text: '1080p'
+    '480p': {
+      source: videoData.video_info.file_url_480,
+      text: '480p'
     },
     '720p': {
-      source: 'https://example.com/your_720p_video.mp4', // 示例，需替换真实地址
+      source: videoData.video_info.file_url_360,
       text: '720p'
     }
   }
@@ -116,7 +118,7 @@ const VideoPlayBiz = ({ videoData }: any) => {
   const [isMuted, setIsMuted] = useState<boolean>(false)
   const offset = 18
   // 添加状态来管理视频分辨率，初始设为2k
-  const [resolution, setResolution] = useState<string>('2k')
+  const [resolution, setResolution] = useState<string>('360p')
 
   // 处理播放/暂停按钮点击
   const togglePlayPause = () => {
@@ -359,11 +361,21 @@ const VideoPlayBiz = ({ videoData }: any) => {
         <div className={styles.title}>{videoData.video_info.title}</div>
         <div className={styles.subTitle}>{videoData.video_info.subtitle}</div>
         <div className={styles.like} onClick={handleSendLike}>
-          <Image src={'/like.png'} width={36} height={36} alt={''} />
+          <Image
+            src={isLike ? '/like.png' : '/unlike.png'}
+            width={36}
+            height={36}
+            alt={''}
+          />
           Like
         </div>
         <div className={styles.save} onClick={handleSendCollection}>
-          <Image src={'/save.png'} width={36} height={36} alt={''} />
+          <Image
+            src={isCollect ? '/save.png' : '/unsave.png'}
+            width={36}
+            height={36}
+            alt={''}
+          />
           Save
         </div>
       </div>

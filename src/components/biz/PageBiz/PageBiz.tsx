@@ -13,10 +13,8 @@ const PageBiz = ({ dataIndex }: any) => {
   const pageIndex1 = dataIndex.data.image_text[0][0]
   const pageIndex2 = dataIndex.data.image_text[1]
   const faqData = dataIndex.data.image_text[2]
-  const imagesArray = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
-    // 这里添加更多图片路径
-  ]
+  const imagesArray = dataIndex.data.library_best
+  console.log('imagesArray', imagesArray)
   const [activeIndex, setActiveIndex] = useState<number | null>(null) // 用来跟踪当前展开的 FAQ 项目
 
   const toggleAnswer = (index: number) => {
@@ -68,6 +66,7 @@ const PageBiz = ({ dataIndex }: any) => {
     currentIndex,
     currentIndex + imagesPerPage
   )
+
   const FAQItem = React.memo(function FAQItem({
     index,
     title,
@@ -140,22 +139,19 @@ const PageBiz = ({ dataIndex }: any) => {
           <div>
             <div className={styles.title1}>TRENDING FILM</div>
             <div className={styles.leftImages}>
-              {currentImages.slice(0, 6).map((image, index) => (
+              {currentImages.slice(0, 6).map((image: any, index: number) => (
                 <img
                   onClick={() =>
                     openModal({
-                      title: '影片TRENDING' + index,
-                      description: `这是影片TRENDING${index}的精彩描述`,
-                      imageUrl:
-                        'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                      title: image.title,
+                      description: image.desc_text,
+                      imageUrl: image.logo
                     })
                   }
                   key={index}
                   className={styles.headIcon}
-                  src={
-                    'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                  }
-                  alt={`${image}`}
+                  src={image.logo}
+                  alt={image.title}
                 />
               ))}
             </div>
@@ -180,22 +176,19 @@ const PageBiz = ({ dataIndex }: any) => {
           <div>
             <div className={styles.title2}>TRENDING FILM FESTIVALS</div>
             <div className={styles.rightImages}>
-              {currentImages.slice(6, 11).map((image, index) => (
+              {currentImages.slice(6, 11).map((image: any, index: any) => (
                 <img
                   onClick={() =>
                     openModal({
-                      title: '影片' + index,
-                      description: `这是影片 TRENDING FILM FESTIVALS${index}的精彩描述`,
-                      imageUrl:
-                        'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
+                      title: image.title,
+                      description: image.desc_text,
+                      imageUrl: image.logo
                     })
                   }
                   key={index}
                   className={styles.headIcon}
-                  src={
-                    'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                  }
-                  alt={`${image}`}
+                  src={image.logo}
+                  alt={image.title}
                 />
               ))}
             </div>
