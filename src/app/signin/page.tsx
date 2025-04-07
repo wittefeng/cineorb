@@ -19,6 +19,11 @@ const SignIn = () => {
       console.log('response', response)
       if (response.code === 200) {
         saveUserInfo(response.data)
+        setTimeout(() => {
+          window.location.href = '/home'
+        }, 300)
+      } else {
+        alert(response.msg)
       }
       // try {
       //   const response = await fetch('YOUR_API_URL', {

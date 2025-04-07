@@ -1,11 +1,30 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
 import UserHead from '@/components/UserHead/UserHead'
+import {
+  clearUserInfo,
+  DefaultUserInfo,
+  getUserInfo,
+  IUserInfo
+} from '@/utils/userinfo'
+import { logoutUser } from '@/services/apiService'
 const Setting = () => {
   // 定义当前选中的 tab，初始值是 1
   const [activeTab, setActiveTab] = useState<number>(0)
+  const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
+
+  useEffect(() => {
+    const userInfoData = getUserInfo()
+    console.log('userInfoData', userInfoData)
+
+    if (userInfoData) {
+      setUserInfo(userInfoData)
+    } else {
+      clearUserInfo()
+    }
+  }, [])
 
   // 左侧 Tab 列表 (固定数据)
   const tabs = [
@@ -49,9 +68,7 @@ const Setting = () => {
           <div className={styles.itemLeft}>
             <img
               className={styles.headIcon}
-              src={
-                'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-              }
+              src={userInfo.user_logo}
               alt={''}
             />
             <span className={styles.tabText}>Upload your profile photo</span>
@@ -119,6 +136,14 @@ const Setting = () => {
     setActiveTab(tabId)
   }
 
+  const handleLogout = async () => {
+    console.log('userInfo', userInfo)
+    await logoutUser(userInfo.user_token)
+    clearUserInfo()
+    setTimeout(() => {
+      window.location.href = '/'
+    }, 300)
+  }
   return (
     <div className={styles.wrap}>
       <UserHead title={'My Account'} />
@@ -134,9 +159,7 @@ const Setting = () => {
             >
               <img
                 className={styles.headIcon}
-                src={
-                  'https://fastly.picsum.photos/id/418/200/200.jpg?hmac=FPLIYEnmfmXtqHPsuZvUzJeXJJbbxMWNq6Evh7mMSN4'
-                }
+                src={userInfo.user_logo}
                 alt={''}
               />
               <span className={styles.tabText}>Account</span>
@@ -152,7 +175,7 @@ const Setting = () => {
                 {tab.label}
               </div>
             ))}
-            <div className={`${styles.tab} `} onClick={() => alert('logout')}>
+            <div className={`${styles.tab} `} onClick={() => handleLogout()}>
               <>
                 <Image
                   className={styles.chartsIcon}

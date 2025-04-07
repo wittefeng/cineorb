@@ -67,7 +67,7 @@ export default function HomeBiz({ dataLibrary, topLibrary }: any) {
                   target={'_blank'}
                   className={styles.titleRight}
                 >
-                  ALL SEE
+                  SEE ALL
                 </Link>
               </div>
               <div className={styles.listTop}>

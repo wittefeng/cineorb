@@ -12,6 +12,7 @@ const Video = (props: IProps) => {
   return (
     <Link
       href={'/video/' + id}
+      target={'_blank'}
       className={styles.wrap}
       style={{
         width: width + 'px',

@@ -66,6 +66,24 @@ export const checkUserLoginStatus = async (user_token: string) => {
   return fetchWrapper('/check', { method: 'GET' }, { baseUrl, user_token })
 }
 
+// 退出登录
+export const logoutUser = async (user_token: string) => {
+  return fetchWrapper(
+    '/logout?user_token=' + user_token,
+    { method: 'GET' },
+    { baseUrl }
+  )
+}
+
+// 用户收藏列表
+export const getCollectionList = async (user_token: string) => {
+  return fetchWrapper(
+    '/collection-list?user_token=' + user_token,
+    { method: 'GET' },
+    { baseUrl }
+  )
+}
+
 // 点赞
 export const sendLikeData = async (user_token: string, vid: string) => {
   console.log(' user_token, vid', user_token, vid)

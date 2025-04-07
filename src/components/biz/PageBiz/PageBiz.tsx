@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
 import ModalComponent, {
   ModalData
 } from '@/components/ModalComponent/ModalComponent'
+import { getUserInfo } from '@/utils/userinfo'
 
 const PageBiz = ({ dataIndex }: any) => {
   console.log('dataIndex', dataIndex)
@@ -24,7 +25,14 @@ const PageBiz = ({ dataIndex }: any) => {
   const [currentModalData, setCurrentModalData] = useState<ModalData | null>(
     null
   )
+  useEffect(() => {
+    const userInfoData = getUserInfo()
+    console.log('userInfoData', userInfoData)
 
+    if (userInfoData) {
+      window.location.href = '/home'
+    }
+  }, [])
   const openModal = (data: ModalData) => {
     console.log('data', data)
     setCurrentModalData(data)

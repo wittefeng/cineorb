@@ -61,51 +61,57 @@ const Header = () => {
             </Link>
           </div>
         </div>
-        {userInfo.user_token === '' && (
+        {userInfo.user_token === '' ? (
           <Link href="/signin" className={styles.singIn}>
             Sign In
           </Link>
-        )}
-        {/* 搜索 */}
-        <div className={styles.searchWrap}>
-          <Image
-            src="/search.png"
-            alt="logo Logo"
-            width={16}
-            height={16}
-            priority
-          />
-          <input
-            placeholder="please enter"
-            className={styles.searchInput}
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            type="text"
-          />
-          <div className={styles.searchBtn} onClick={handleSearchClick}>
-            Search
-          </div>
-        </div>
-        <div
-          className={styles.headWrap}
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        >
-          <img className={styles.headIcon} src={userInfo.user_logo} alt={''} />
-          <span className={styles.nickName}>{userInfo.nickname}</span>
-        </div>
-        {/* 下拉菜单部分，根据状态决定是否显示 */}
-        {isDropdownOpen && (
-          <div className={styles.dropdownMenu}>
-            <Link href="/mylibrary" className={styles.dropdownItem}>
-              My Library
-            </Link>
-            <Link href="/setting" className={styles.dropdownItem}>
-              Setting
-            </Link>
-            <Link href="/user" className={styles.dropdownItem}>
-              Creator Center
-            </Link>
-          </div>
+        ) : (
+          <>
+            <div className={styles.searchWrap}>
+              <Image
+                src="/search.png"
+                alt="logo Logo"
+                width={16}
+                height={16}
+                priority
+              />
+              <input
+                placeholder="please enter"
+                className={styles.searchInput}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                type="text"
+              />
+              <div className={styles.searchBtn} onClick={handleSearchClick}>
+                Search
+              </div>
+            </div>
+            <div
+              className={styles.headWrap}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <img
+                className={styles.headIcon}
+                src={userInfo.user_logo}
+                alt={''}
+              />
+              <span className={styles.nickName}>{userInfo.nickname}</span>
+            </div>
+            {/* 下拉菜单部分，根据状态决定是否显示 */}
+            {isDropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                <Link href="/mylibrary" className={styles.dropdownItem}>
+                  My Library
+                </Link>
+                <Link href="/setting" className={styles.dropdownItem}>
+                  Setting
+                </Link>
+                <Link href="/user" className={styles.dropdownItem}>
+                  Creator Center
+                </Link>
+              </div>
+            )}
+          </>
         )}
       </div>
     </header>

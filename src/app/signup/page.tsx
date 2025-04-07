@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import styles from './signup.module.css'
 import Image from 'next/image'
 import { getRegisterData } from '@/services/apiService'
+import { saveUserInfo } from '@/utils/userinfo'
 
 const SignUp = () => {
   const usernameRef = useRef<HTMLInputElement>(null)
@@ -18,6 +19,14 @@ const SignUp = () => {
       console.log('username,password,captcha', username, password, captcha)
       const response = await getRegisterData(username, password, captcha)
       console.log('response', response)
+      if (response.code === 200) {
+        saveUserInfo(response.data)
+        setTimeout(() => {
+          window.location.href = '/home'
+        }, 300)
+      } else {
+        alert(response.msg)
+      }
       // try {
       //   const response = await fetch('YOUR_API_URL', {
       //     method: 'POST',
