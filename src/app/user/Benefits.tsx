@@ -1,32 +1,76 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './page.module.css'
+import { DefaultUserInfo, getUserInfo, IUserInfo } from '@/utils/userinfo'
+import { applyAuthentication } from '@/services/apiService'
+
 const Benefits = () => {
+  const [institutionName, setInstitutionName] = useState('')
+  const [positionName, setPositionName] = useState('')
+  const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
+
+  useEffect(() => {
+    const userInfoData = getUserInfo()
+    if (userInfoData) {
+      console.log('userInfoData', userInfoData)
+      setUserInfo(userInfoData)
+    }
+  }, [])
+  const handleUpgrade = async () => {
+    try {
+      const response = await applyAuthentication(
+        userInfo.user_token,
+        institutionName,
+        positionName
+      )
+      console.log('response', response)
+      if (response.code !== 200) {
+        alert(response.msg)
+      } else {
+        alert(response.msg)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
   return (
     <div className={styles.benefitsContent}>
-      <div className={styles.title}>Introduction to Upgrade Benefits</div>
-      <div className={styles.benefitsMsg}>
-        <p>
-          介绍升级的权益 介绍升级的权益巴拉巴拉， 显示 锁定icon和 “Upgrade to
-        </p>
-        <p>Pro to access advanced video analytics”.</p>
-        <p>
-          介绍升级的权益巴拉巴拉对付费创作人用户： 介绍升级的权益巴拉巴拉Views:
-        </p>
-        <p>
-          #视频浏览数 介绍升级的权益巴拉巴拉Watch Time: 总观看时长、平均观看时长
-        </p>
-        <p>介绍升级的权益巴拉巴拉Engagement: 点赞数、分享数</p>
-        <p>介绍升级的权益巴拉巴拉Demographics: 观众地区、年龄、设备等</p>
-      </div>
-      <div className={styles.benefitsMsg}>
-        <p>
-          介绍升级的权益 介绍升级的权益巴拉巴拉， 显示 锁定icon和 “Upgrade to
-        </p>
-      </div>
-      <div className={styles.benefitsBtnWrap}>
-        <div className={styles.benefitsBtn}>upgrade to pro</div>
-      </div>
+      {userInfo && userInfo.is_creator === 0 ? (
+        <>
+          <div className={styles.title}>Introduction to Upgrade Benefits</div>
+          <div className={styles.benefitsMsg}>
+            <p>创作者申请</p>
+          </div>
+          <div className={styles.benefitsMsg}>
+            <div className={styles.filmInfoItem}>
+              <div className={styles.filmInfoLabel}>机构名称</div>
+              <input
+                className={styles.filmInfoInput}
+                placeholder="Enter message"
+                value={institutionName}
+                onChange={(e) => setInstitutionName(e.target.value)}
+              />
+            </div>
+            <div className={styles.filmInfoItem}>
+              <div className={styles.filmInfoLabel}>职位名称</div>
+              <input
+                className={styles.filmInfoInput}
+                placeholder="Enter message"
+                value={positionName}
+                onChange={(e) => setPositionName(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={styles.benefitsBtnWrap}>
+            <div className={styles.benefitsBtn} onClick={handleUpgrade}>
+              upgrade to pro
+            </div>
+          </div>
+        </>
+      ) : (
+        <div>you are creator</div>
+      )}
     </div>
   )
 }

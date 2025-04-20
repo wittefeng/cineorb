@@ -125,7 +125,7 @@ function getUserInfo(): IUserInfo | null {
     vip_datetime: string
   }
 }
-// 示例用法
+// 用户
 export const DefaultUserInfo: IUserInfo = {
   id: -1,
   user_token: '',
@@ -136,7 +136,35 @@ export const DefaultUserInfo: IUserInfo = {
   is_vip: 0,
   vip_datetime: ''
 }
-
+// 用户声明
+export interface IUserAllInfo {
+  id: number
+  user_token: string
+  username: string
+  phone: string
+  email: string
+  base_birthday: string
+  address: string
+  nickname: string
+  user_logo: string
+  is_creator: string
+  is_vip: string
+  vip_datetime: string
+}
+export const DefaultUserAllInfo: IUserAllInfo = {
+  id: 0,
+  user_token: '',
+  username: '',
+  phone: '',
+  email: '',
+  base_birthday: '',
+  address: '',
+  nickname: '',
+  user_logo: '',
+  is_creator: '',
+  is_vip: '',
+  vip_datetime: ''
+}
 // 保存用户信息
 // saveUserInfo(userInfo)
 

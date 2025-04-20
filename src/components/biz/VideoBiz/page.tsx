@@ -11,7 +11,8 @@ import {
 import {
   checkUserLoginStatus,
   sendCollectionData,
-  sendLikeData
+  sendLikeData,
+  watching
 } from '@/services/apiService'
 
 // 视频源配置对象，以不同分辨率作为键，方便扩展不同分辨率的相关信息及视频地址
@@ -68,13 +69,12 @@ const ResolutionDropdown = ({
 const VideoPlayBiz = ({ videoData }: any) => {
   console.log('videoData', videoData)
   const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
-  const [isLike, setIsLike] = useState(false)
+  const [isLike, setIsLike] = useState(!!videoData.is_like)
   const [isCollect, setIsCollect] = useState(false)
   const checkUserStatus = async (token: string) => {
     checkUserLoginStatus(token)
   }
   useEffect(() => {
-    setIsLike(!!videoData.is_like)
     const userInfoData = getUserInfo()
 
     if (userInfoData) {
@@ -84,6 +84,7 @@ const VideoPlayBiz = ({ videoData }: any) => {
       clearUserInfo()
     }
   }, [])
+
   const handleSendLike = async () => {
     await sendLikeData(userInfo.user_token, videoData.video_info.id)
     setIsLike(true)
@@ -97,15 +98,18 @@ const VideoPlayBiz = ({ videoData }: any) => {
   }
   const videoSources: any = {
     '360p': {
-      source: videoData.video_info.file_url_360,
+      source: videoData.video_info.file_url,
+      // source: videoData.video_info.file_url_360,
       text: '360p'
     },
     '480p': {
-      source: videoData.video_info.file_url_480,
+      source: videoData.video_info.file_url,
+      // source: videoData.video_info.file_url_480,
       text: '480p'
     },
     '720p': {
-      source: videoData.video_info.file_url_360,
+      source: videoData.video_info.file_url,
+      // source: videoData.video_info.file_url_360,
       text: '720p'
     }
   }
@@ -120,6 +124,10 @@ const VideoPlayBiz = ({ videoData }: any) => {
   // 添加状态来管理视频分辨率，初始设为2k
   const [resolution, setResolution] = useState<string>('360p')
 
+  useEffect(() => {
+    console.log('记录视频播放时间')
+    watching(userInfo.user_token, videoData.video_info.id, '1')
+  }, [currentTime])
   // 处理播放/暂停按钮点击
   const togglePlayPause = () => {
     if (videoRef.current) {

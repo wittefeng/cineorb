@@ -130,6 +130,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .filmInfoItem {
@@ -158,6 +159,7 @@
   position: relative;
   border: 0;
   padding: 0 12px;
+  color: #000000;
 }
 
 .tableItem {
@@ -279,6 +281,7 @@
   color: #2A2A44;
   line-height: 36px;
   padding: 0 28px;
+  cursor: pointer;
 }
 
 .videoManagementList {
@@ -292,6 +295,11 @@
 }
 
 .uploadVideoContent {
+  padding: 60px;
+}
+
+.modifyVideoContent {
+  background-color: #000;
   padding: 60px;
 }
 
@@ -333,6 +341,74 @@
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  cursor: pointer;
+}
+
+
+.uploadInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.itemWrap {
+  position: relative;
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 10px;
+  font-size: 0;
+}
+
+.status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  background-color: rgb(57, 57, 57);
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+.dataInfo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  color: white;
+  background-color: rgb(122, 132, 136);
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+.btnsWrap {
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  right: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  color: white;
+  background: #FFA500;
+  border-radius: 5px;
+  width: 30%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.showMsg {
+  margin-left: 120px;
+  margin-top: 20px;
 }
 
 @media (max-width: 767px) {

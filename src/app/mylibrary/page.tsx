@@ -62,7 +62,8 @@ export default function MyLibrary() {
               width={48}
               height={48}
             />
-            <span>LIKED VIDEOS</span>
+            {/* <span>LIKED VIDEOS</span> */}
+            <span>Collection VIDEOS</span>
           </div>
           <Link
             href={'/mylibrarydetail/liked-video'}
@@ -114,7 +115,7 @@ export default function MyLibrary() {
           )}
         </div>
       </div>
-      <div className={styles.listWrap}>
+      {/* <div className={styles.listWrap}>
         <div className={styles.title}>
           <div className={styles.left}>
             <Image
@@ -374,7 +375,7 @@ export default function MyLibrary() {
             </SwiperSlide>
           </Swiper>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

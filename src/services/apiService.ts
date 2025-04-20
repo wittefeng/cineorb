@@ -103,6 +103,176 @@ export const sendCollectionData = async (user_token: string, vid: string) => {
     { baseUrl }
   )
 }
+// 用户信息
+export const getUserInfoData = async (user_token: string) => {
+  console.log('getUserInfoData user_token, ', user_token)
+  return fetchWrapper(
+    '/user-info?user_token=' + user_token,
+    { method: 'GET' },
+    { baseUrl }
+  )
+}
+
+// 更新用户信息
+export const updateUserInfoData = async (
+  user_token: string,
+  name: any,
+  value: string
+) => {
+  return fetchWrapper(
+    '/profile?user_token=' + user_token + `&${name}=` + value,
+    {
+      method: 'GET'
+    },
+    { baseUrl }
+  )
+}
+// 更新用户信息
+export const watching = async (
+  user_token: string,
+  lid: any,
+  play_time: string
+) => {
+  return fetchWrapper(
+    '/watching?user_token=' + user_token + `&lid=${lid}&play_time=` + play_time,
+    {
+      method: 'GET'
+    },
+    { baseUrl }
+  )
+}
+
+// 上传文件
+export const uploadData = async (user_token: string, formData: any) => {
+  return fetchWrapper(
+    '/upload?user_token=' + user_token,
+    {
+      method: 'POST',
+      body: formData
+    },
+    { baseUrl }
+  )
+}
+
+// 创作者申请
+export const applyAuthentication = async (
+  user_token: string,
+  institution_name: string,
+  position_name: string
+) => {
+  console.log(
+    'user_token, institution_name, position_name',
+    user_token,
+    institution_name,
+    position_name
+  )
+  return fetchWrapper(
+    '/authentication?user_token=' +
+      user_token +
+      '&institution_name=' +
+      institution_name +
+      '&position_name=' +
+      position_name,
+    { method: 'GET' },
+    { baseUrl }
+  )
+}
+// 创作者申请
+export const applyProfessional = async (user_token: string) => {
+  console.log('user_token, ', user_token)
+  return fetchWrapper(
+    '/professional?user_token=' + user_token,
+    { method: 'GET' },
+    { baseUrl }
+  )
+}
+
+// 创作者视频
+export const getCreatorVideo = async (user_token: string) => {
+  return fetchWrapper(
+    '/creator-video?user_token=' + user_token,
+    {
+      method: 'GET'
+    },
+    { baseUrl }
+  )
+}
+// 统计信息
+export const getStatistical = async (user_token: string) => {
+  return fetchWrapper(
+    '/statistical?user_token=' + user_token,
+    {
+      method: 'GET'
+    },
+    { baseUrl }
+  )
+}
+// 发布视频
+export const publishVideo = async (
+  user_token: string,
+  title: string,
+  subtitle: string,
+  file_url: string,
+  logoUrl: string
+) => {
+  return fetchWrapper(
+    '/publish-video?user_token=' +
+      user_token +
+      '&title=' +
+      title +
+      '&subtitle=' +
+      subtitle +
+      '&file_url=' +
+      file_url +
+      '&file_url_360=' +
+      file_url +
+      '&file_url_480=' +
+      file_url +
+      '&file_url_720=' +
+      file_url +
+      `&logo=${logoUrl}&file_time=`,
+    {
+      method: 'GET'
+    },
+    { baseUrl }
+  )
+}
+// 修改视频
+type VideoModifyOptions = {
+  title?: string
+  subtitle?: string
+  logo?: string
+  file_url?: string
+  file_url_360?: string
+  file_url_480?: string
+  file_url_720?: string
+  file_time?: string
+  is_list?: string
+}
+export const modifyVideo = async (
+  userToken: string,
+  id: string,
+  options: VideoModifyOptions = {}
+) => {
+  const apiUrl = '/modify-video'
+  const params = new URLSearchParams()
+  params.append('user_token', userToken)
+  params.append('id', id)
+
+  for (const [key, value] of Object.entries(options)) {
+    if (value !== undefined) {
+      params.append(key, value)
+    }
+  }
+
+  return fetchWrapper(
+    `${apiUrl}?${params.toString()}`,
+    {
+      method: 'GET'
+    },
+    { baseUrl }
+  )
+}
 // // 服务端带 token 的请求
 // export const getPrivateData = async () => {
 //   return fetchWrapper(

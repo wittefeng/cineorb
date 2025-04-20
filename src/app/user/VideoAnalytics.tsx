@@ -1,29 +1,83 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './page.module.css'
+import { applyProfessional, getStatistical } from '@/services/apiService'
+import { IUserInfo, DefaultUserInfo, getUserInfo } from '@/utils/userinfo'
 const VideoAnalytics = () => {
+  const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
+  const [data, setData] = useState<any>()
+
+  const getData = async (user_token: string) => {
+    const res = await getStatistical(user_token)
+    console.log('res', res)
+    setData(res.data)
+  }
+
+  useEffect(() => {
+    const userInfoData = getUserInfo()
+    if (userInfoData) {
+      getData(userInfoData.user_token)
+      setUserInfo(userInfoData)
+    }
+  }, [])
+  const handleUpgrade = async () => {
+    try {
+      const response = await applyProfessional(userInfo.user_token)
+      console.log('response', response)
+      if (response.code !== 200) {
+        alert(response.msg)
+      } else {
+        alert(response.msg)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
   return (
     <div className={styles.benefitsContent}>
-      <div className={styles.title}>Video Analytics (Pro Feature)</div>
-      <div className={styles.benefitsMsg}>
-        <p>
-          介绍升级的权益 介绍升级的权益巴拉巴拉， 显示 锁定icon和 “Upgrade to
-        </p>
-        <p>Pro to access advanced video analytics”.</p>
-        <p>
-          介绍升级的权益巴拉巴拉对付费创作人用户： 介绍升级的权益巴拉巴拉Views:
-        </p>
-        <p>
-          #视频浏览数 介绍升级的权益巴拉巴拉Watch Time: 总观看时长、平均观看时长
-        </p>
-        <p>介绍升级的权益巴拉巴拉Engagement: 点赞数、分享数</p>
-        <p>介绍升级的权益巴拉巴拉Demographics: 观众地区、年龄、设备等</p>
-      </div>
-      <div className={styles.benefitsMsg}>
-        <p>
-          介绍升级的权益 介绍升级的权益巴拉巴拉， 显示 锁定icon和 “Upgrade to
-        </p>
-      </div>
+      {userInfo.is_vip === 1 ? (
+        <>
+          <div className={styles.title}>Video Analytics (Pro Feature)</div>
+          {data && (
+            <>
+              <div className={styles.benefitsMsg}>
+                <p>视频数量:{data.all.userVideoCount}</p>
+                <p>视频长度:{data.all.userVideoDuration}</p>
+                <p>视频收藏:{data.all.userVideoDuration}</p>
+                <p>视频点赞:{data.all.userCollectionCount}</p>
+              </div>
+              <div className={styles.videoManagementList}>
+                {data.video.map((item: any, index: number) => (
+                  <div key={index} className={styles.itemWrap}>
+                    <img
+                      width={212}
+                      height={120}
+                      src={item.videoInfo.logo}
+                      id={item.videoInfo.cat_id}
+                      style={{ objectFit: 'cover' }}
+                    />
+
+                    <div className={styles.dataInfo}>
+                      <p>点赞数：{item.videoLikeCount}</p>
+                      <p>收藏数：{item.videoCollectionCount}</p>
+                      <p>播放时长：{item.videoDuration}s</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <div>您还不是专业版</div>
+          <div className={styles.benefitsBtnWrap}>
+            <div className={styles.benefitsBtn} onClick={handleUpgrade}>
+              upgrade to pro
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }

@@ -14,31 +14,40 @@ export interface ModalData {
 interface ModalProps {
   isOpen: boolean
   onClose: () => void
-  modalData: ModalData
+  modalData?: ModalData
+  children?: any
 }
 
 const ModalComponent: React.FC<ModalProps> = ({
   isOpen,
   onClose,
-  modalData
+  modalData,
+  children
 }) => {
   if (!isOpen) {
     return null
   }
 
-  const { title, description, imageUrl } = modalData
-
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.textWrap}>
-          <button className={styles.closeButton} onClick={onClose}>
-            <Image src={'/delete.png'} alt={''} width={24} height={24} />
-          </button>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.description}>{description}</p>
-        </div>
-        <img src={imageUrl} alt={title} className={styles.modalImage} />
+        <button className={styles.closeButton} onClick={onClose}>
+          <Image src={'/delete.png'} alt={''} width={24} height={24} />
+        </button>
+        {modalData && (
+          <>
+            <div className={styles.textWrap}>
+              <h2 className={styles.title}>{modalData.title}</h2>
+              <p className={styles.description}>{modalData.description}</p>
+            </div>
+            <img
+              src={modalData.imageUrl}
+              alt={modalData.title}
+              className={styles.modalImage}
+            />
+          </>
+        )}
+        {children}
       </div>
     </div>
   )
