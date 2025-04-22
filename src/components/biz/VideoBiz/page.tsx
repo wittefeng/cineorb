@@ -9,7 +9,6 @@ import {
   IUserInfo
 } from '@/utils/userinfo'
 import {
-  checkUserLoginStatus,
   sendCollectionData,
   sendLikeData,
   watching
@@ -71,15 +70,12 @@ const VideoPlayBiz = ({ videoData }: any) => {
   const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
   const [isLike, setIsLike] = useState(!!videoData.is_like)
   const [isCollect, setIsCollect] = useState(false)
-  const checkUserStatus = async (token: string) => {
-    checkUserLoginStatus(token)
-  }
+
   useEffect(() => {
     const userInfoData = getUserInfo()
 
     if (userInfoData) {
       setUserInfo(userInfoData)
-      checkUserStatus(userInfoData.user_token)
     } else {
       clearUserInfo()
     }

@@ -68,8 +68,10 @@ const Benefits = () => {
             </div>
           </div>
         </>
+      ) : userInfo.is_creator === 2 ? (
+        <div>创作者申请正在审核中</div>
       ) : (
-        <div>you are creator</div>
+        <div>你是创作者</div>
       )}
     </div>
   )

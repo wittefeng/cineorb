@@ -64,7 +64,10 @@
 .listTop {
   margin-top: 30px;
   display: flex;
-  justify-content: space-between;
+}
+
+.videoBox {
+  margin-right: 6px;
 }
 
 .left {

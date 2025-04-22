@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './page.module.css'
 import UserHead from '@/components/UserHead/UserHead'
 import Image from 'next/image'
@@ -8,6 +8,8 @@ import VideoManagement from './VideoManagement'
 import Benefits from './Benefits'
 import VideoAnalytics from './VideoAnalytics'
 import DIYM from './DIYM'
+import { getUserInfo, saveUserInfo } from '@/utils/userinfo'
+import { getUserInfoData } from '@/services/apiService'
 const Page = () => {
   // 定义当前选中的 tab，初始值是 1
   const [activeTab, setActiveTab] = useState<number>(4)
@@ -85,7 +87,24 @@ const Page = () => {
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId)
   }
+  const getData = async () => {
+    const userInfoData = getUserInfo()
+    if (userInfoData && userInfoData.user_token) {
+      const userData = await getUserInfoData(userInfoData.user_token)
+      console.log('服务器 userData', userData)
 
+      if (userData.data) {
+        saveUserInfo({
+          ...userData.data
+        })
+      } else {
+        // clearUserInfo()
+      }
+    }
+  }
+  useEffect(() => {
+    getData()
+  }, [])
   return (
     <div className={styles.wrap}>
       <UserHead title={'My Account'} />

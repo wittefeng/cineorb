@@ -1,20 +1,22 @@
 'use client'
 import React, { useRef } from 'react'
 import styles from './signup.module.css'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { getRegisterData } from '@/services/apiService'
 import { saveUserInfo } from '@/utils/userinfo'
 
 const SignUp = () => {
   const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
-  const captchaRef = useRef<HTMLInputElement>(null)
+  // const captchaRef = useRef<HTMLInputElement>(null)
 
   const handleContinueClick = async () => {
-    if (usernameRef.current && passwordRef.current && captchaRef.current) {
+    if (usernameRef.current && passwordRef.current) {
+      // if (usernameRef.current && passwordRef.current && captchaRef.current) {
       const username = usernameRef.current.value
       const password = passwordRef.current.value
-      const captcha = captchaRef.current.value
+      const captcha = ''
+      // const captcha = captchaRef.current.value
 
       console.log('username,password,captcha', username, password, captcha)
       const response = await getRegisterData(username, password, captcha)
@@ -64,7 +66,7 @@ const SignUp = () => {
       <div className={styles.inputWrap}>
         <input type="password" placeholder="Password" ref={passwordRef} />
       </div>
-      <div className={styles.inputCodeWrap}>
+      {/* <div className={styles.inputCodeWrap}>
         <div className={styles.inputWrap}>
           <input
             type="text"
@@ -84,7 +86,7 @@ const SignUp = () => {
         <div className={styles.dealText}>
           Didn't receive the captcha? Resend in 60 seconds.
         </div>
-      </div>
+      </div> */}
       <button className={styles.continueBtn} onClick={handleContinueClick}>
         CONTINUE
       </button>

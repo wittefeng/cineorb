@@ -10,6 +10,7 @@ const ModifyVideo = () => {
   const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
   const [videoUrl, setVideoUrl] = useState('')
   const [logoUrl, setLogoUrl] = useState('')
+  const [price, setPrice] = useState('')
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
   const [uploading, setUploading] = useState(false)
@@ -61,6 +62,10 @@ const ModifyVideo = () => {
       alert('请上传视频封面')
       return
     }
+    if (price === '') {
+      alert('请输入价格')
+      return
+    }
     if (title === '') {
       alert('请输入标题')
       return
@@ -74,7 +79,8 @@ const ModifyVideo = () => {
       title,
       subtitle,
       videoUrl,
-      logoUrl
+      logoUrl,
+      price
     )
     if (response.code === 200) {
       setVideoUrl('')
@@ -142,6 +148,16 @@ const ModifyVideo = () => {
               className={styles.filmInfoInput}
               placeholder="Enter the subtitle of your film"
               onChange={(e) => setSubtitle(e.target.value)}
+            />
+          </div>
+          <div className={styles.filmInfoItem}>
+            <div className={styles.filmInfoLabel}>*Film Price</div>
+            <input
+              value={price}
+              type={'number'}
+              className={styles.filmInfoInput}
+              placeholder="Enter the price of your film"
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
           {/* <div className={styles.filmInfoItem}>
@@ -284,6 +300,8 @@ const ModifyVideo = () => {
             </div>
           </div>
         </>
+      ) : userInfo.is_creator === 2 ? (
+        <div>创作者申请正在审核中</div>
       ) : (
         <div>你还不是创作者</div>
       )}

@@ -40,7 +40,7 @@ const fetchWrapper = async (
   })
 
   if (!response.ok) {
-    throw new Error(`请求失败: ${response.status}`)
+    alert(`请求失败: ${response.status}`)
   }
 
   return response.json()

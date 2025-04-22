@@ -119,8 +119,10 @@ const VideoManagement = () => {
             ))}
           </div>
         </>
+      ) : userInfo.is_creator === 2 ? (
+        <div>创作者申请正在审核中</div>
       ) : (
-        <div>您还不是创作者</div>
+        <div>你还不是创作者</div>
       )}
     </div>
   )

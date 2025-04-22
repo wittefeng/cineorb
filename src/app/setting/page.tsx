@@ -28,10 +28,20 @@ const Setting = () => {
     const userInfoData = getUserInfo()
     if (userInfoData && userInfoData.user_token) {
       const userData = await getUserInfoData(userInfoData.user_token)
-      console.log('userData', userData)
+      console.log('服务器 userData', userData)
 
       if (userData.data) {
         setUserInfo(userData.data)
+        saveUserInfo({
+          ...userData.data
+        })
+        setEditedInfo({
+          email: userData.data.email,
+          phone: userData.data.phone,
+          nickname: userData.data.nickname,
+          base_birthday: userData.data.base_birthday,
+          address: userData.data.address
+        })
       } else {
         // clearUserInfo()
       }
@@ -69,37 +79,37 @@ const Setting = () => {
     }))
   }
   // 左侧 Tab 列表 (固定数据)
-  const tabs = [
-    {
-      id: 1,
-      label: (
-        <>
-          <Image
-            className={styles.chartsIcon}
-            src={'/setting-plan.png'}
-            alt={''}
-            width={14}
-            height={18}
-          />
-          <span className={styles.tabText}>Your</span>
-        </>
-      )
-    },
-    {
-      id: 2,
-      label: (
-        <>
-          <Image
-            className={styles.chartsIcon}
-            src={'/setting-billing.png'}
-            alt={''}
-            width={14}
-            height={18}
-          />
-          <span className={styles.tabText}>Billing</span>
-        </>
-      )
-    }
+  const tabs: any[] = [
+    // {
+    //   id: 1,
+    //   label: (
+    //     <>
+    //       <Image
+    //         className={styles.chartsIcon}
+    //         src={'/setting-plan.png'}
+    //         alt={''}
+    //         width={14}
+    //         height={18}
+    //       />
+    //       <span className={styles.tabText}>Your</span>
+    //     </>
+    //   )
+    // },
+    // {
+    //   id: 2,
+    //   label: (
+    //     <>
+    //       <Image
+    //         className={styles.chartsIcon}
+    //         src={'/setting-billing.png'}
+    //         alt={''}
+    //         width={14}
+    //         height={18}
+    //       />
+    //       <span className={styles.tabText}>Billing</span>
+    //     </>
+    //   )
+    // }
   ]
   const [uploading, setUploading] = useState(false)
   const handleFileChange = async (e: any) => {
@@ -187,16 +197,28 @@ const Setting = () => {
                 )}
               </div>
               {(editingField === null || editingField === field) && (
-                <div
-                  className={styles.btn}
-                  onClick={
-                    editingField === field
-                      ? () => handleSubmitClick(field)
-                      : () => handleEditClick(field)
-                  }
-                >
-                  {editingField === field ? 'Submit' : 'Edit'}
-                </div>
+                <>
+                  <div
+                    className={styles.btn}
+                    onClick={
+                      editingField === field
+                        ? () => handleSubmitClick(field)
+                        : () => handleEditClick(field)
+                    }
+                  >
+                    {editingField === field ? 'Submit' : 'Edit'}
+                  </div>
+                </>
+              )}
+              {editingField === field && (
+                <>
+                  <div
+                    className={styles.btn}
+                    onClick={() => setEditingField(null)}
+                  >
+                    Cancel
+                  </div>
+                </>
               )}
             </div>
           </div>

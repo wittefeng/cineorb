@@ -61,6 +61,7 @@
 }
 
 .continueBtn {
+  cursor: pointer;
   border-radius: 8px;
   opacity: 1;
   background: #FFA500;

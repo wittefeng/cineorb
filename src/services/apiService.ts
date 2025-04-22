@@ -25,10 +25,19 @@ export const getDetailData = async (cat_id: any) => {
   )
 }
 // video详情页 detail cat_id
-export const getVideoData = async (cat_id: any) => {
+export const getVideoData = async (cat_id: any, user_token: string) => {
   console.log('cat_id', cat_id)
   return fetchWrapper(
-    '/video' + '?id=' + cat_id,
+    '/video' + `?user_token=${user_token}&id=${cat_id}`,
+    { method: 'get' },
+    { baseUrl }
+  )
+}
+// 检查是否购买视频
+export const checkBuyVideo = async (cat_id: any, user_token: string) => {
+  console.log('cat_id', cat_id)
+  return fetchWrapper(
+    '/user-check' + `?user_token=${user_token}&id=${cat_id}`,
     { method: 'get' },
     { baseUrl }
   )
@@ -60,11 +69,6 @@ export const getLoginData = async (username: string, password: string) => {
     { baseUrl }
   )
 }
-// 检查用户是否是登录状态
-
-export const checkUserLoginStatus = async (user_token: string) => {
-  return fetchWrapper('/check', { method: 'GET' }, { baseUrl, user_token })
-}
 
 // 退出登录
 export const logoutUser = async (user_token: string) => {
@@ -79,6 +83,14 @@ export const logoutUser = async (user_token: string) => {
 export const getCollectionList = async (user_token: string) => {
   return fetchWrapper(
     '/collection-list?user_token=' + user_token,
+    { method: 'GET' },
+    { baseUrl }
+  )
+}
+// 用户点赞列表
+export const getLikeList = async (user_token: string) => {
+  return fetchWrapper(
+    '/like-list?user_token=' + user_token,
     { method: 'GET' },
     { baseUrl }
   )
@@ -213,7 +225,8 @@ export const publishVideo = async (
   title: string,
   subtitle: string,
   file_url: string,
-  logoUrl: string
+  logoUrl: string,
+  price: string
 ) => {
   return fetchWrapper(
     '/publish-video?user_token=' +
@@ -230,7 +243,7 @@ export const publishVideo = async (
       file_url +
       '&file_url_720=' +
       file_url +
-      `&logo=${logoUrl}&file_time=`,
+      `&logo=${logoUrl}&file_time=&price=${price}`,
     {
       method: 'GET'
     },
@@ -248,6 +261,7 @@ type VideoModifyOptions = {
   file_url_720?: string
   file_time?: string
   is_list?: string
+  price?: string
 }
 export const modifyVideo = async (
   userToken: string,

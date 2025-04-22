@@ -10,22 +10,17 @@ import {
   getUserInfo,
   IUserInfo
 } from '@/utils/userinfo'
-import { checkUserLoginStatus } from '@/services/apiService'
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
-  const checkUserStatus = async (token: string) => {
-    const response = await checkUserLoginStatus(token)
-    console.log('response', response)
-  }
+
   useEffect(() => {
     const userInfoData = getUserInfo()
     console.log('userInfoData', userInfoData)
 
     if (userInfoData) {
       setUserInfo(userInfoData)
-      checkUserStatus(userInfoData.user_token)
     } else {
       clearUserInfo()
     }

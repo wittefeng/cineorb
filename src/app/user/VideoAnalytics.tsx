@@ -68,6 +68,8 @@ const VideoAnalytics = () => {
             </>
           )}
         </>
+      ) : userInfo.is_creator === 2 ? (
+        <div>专业版申请正在审核中</div>
       ) : (
         <>
           <div>您还不是专业版</div>

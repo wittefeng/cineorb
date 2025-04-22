@@ -15,6 +15,7 @@ const UploadVideo = (props: IPops) => {
   const [userInfo, setUserInfo] = useState<IUserInfo>(DefaultUserInfo)
   const [videoUrl, setVideoUrl] = useState('')
   const [logoUrl, setLogoUrl] = useState('')
+  const [price, setPrice] = useState('')
   const [title, setTitle] = useState('')
   const [subtitle, setSubtitle] = useState('')
   const [uploading, setUploading] = useState(false)
@@ -29,6 +30,7 @@ const UploadVideo = (props: IPops) => {
       setVideoId(props.defaultData.id)
       setVideoUrl(props.defaultData.file_url)
       setLogoUrl(props.defaultData.logo)
+      setPrice(props.defaultData.price)
       setTitle(props.defaultData.title)
       setSubtitle(props.defaultData.subtitle)
     }
@@ -74,6 +76,10 @@ const UploadVideo = (props: IPops) => {
       alert('请上传视频封面')
       return
     }
+    if (price === '') {
+      alert('请输入价格')
+      return
+    }
     if (title === '') {
       alert('请输入标题')
       return
@@ -89,11 +95,13 @@ const UploadVideo = (props: IPops) => {
       file_url_360: videoUrl,
       file_url_480: videoUrl,
       file_url_720: videoUrl,
-      logo: logoUrl
+      logo: logoUrl,
+      price
     })
     if (response.code === 200) {
       setVideoUrl('')
       setLogoUrl('')
+      setPrice('')
       setTitle('')
       setSubtitle('')
     }
@@ -158,6 +166,16 @@ const UploadVideo = (props: IPops) => {
               className={styles.filmInfoInput}
               placeholder="Enter the subtitle of your film"
               onChange={(e) => setSubtitle(e.target.value)}
+            />
+          </div>
+          <div className={styles.filmInfoItem}>
+            <div className={styles.filmInfoLabel}>*Film Price</div>
+            <input
+              value={price}
+              type={'number'}
+              className={styles.filmInfoInput}
+              placeholder="Enter the price of your film"
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
           {/* <div className={styles.filmInfoItem}>
@@ -300,6 +318,8 @@ const UploadVideo = (props: IPops) => {
             </div>
           </div>
         </>
+      ) : userInfo.is_creator === 2 ? (
+        <div>创作者申请正在审核中</div>
       ) : (
         <div>你还不是创作者</div>
       )}
